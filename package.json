@@ -1,0 +1,15 @@
+{
+  "name": "cost-to-hire-il",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CostToHire IL — instant Israel employer-cost calculator and dated briefing.",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "calculate": "node src/cli.js calculate",
+    "briefing": "node src/cli.js briefing",
+    "offer": "node src/cli.js offer"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

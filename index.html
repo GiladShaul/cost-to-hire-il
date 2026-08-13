@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CostToHire IL — Israel employer-cost briefing</title>
+  <meta name="description" content="See the true shekel cost of hiring an employee in Israel. Free 2026 calculator. Dated briefing ₪149.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Hebrew:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">CostToHire IL<strong data-en="The shekel cost of a hire" data-he="העלות השקלית של העסקה">The shekel cost of a hire</strong></div>
+      <div class="lang">
+        <button type="button" id="lang-en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-he" aria-pressed="false">עברית</button>
+      </div>
+    </header>
+
+    <p id="file-note" class="file-note" hidden data-en="This page was opened as a file. The calculator still runs. For a local server use: npx serve ." data-he="הדף נפתח כקובץ. המחשבון עדיין רץ. לשרת מקומי: npx serve .">This page was opened as a file. The calculator still runs. For a local server use: npx serve .</p>
+
+    <section class="hero">
+      <div>
+        <h1 data-en="Know the employer cost before you make the offer." data-he="דעו את עלות המעסיק לפני שאתם נותנים הצעה.">Know the employer cost before you make the offer.</h1>
+        <p class="lede" data-en="A bilingual calculator for foreign companies and Israeli operators hiring in Israel. Published 2026 national-insurance bands, pension, and severance — then a dated briefing you can hand a CFO." data-he="מחשבון דו-לשוני לחברות זרות ולעסקים ישראליים שמגייסים בישראל. מדרגות ביטוח לאומי, פנסיה ופיצויים לשנת 2026 — ואז תדריך מתוארך שאפשר להעביר ל-CFO.">A bilingual calculator for foreign companies and Israeli operators hiring in Israel. Published 2026 national-insurance bands, pension, and severance — then a dated briefing you can hand a CFO.</p>
+        <div class="price-pill">
+          <span data-en="Israel employer-cost briefing" data-he="תדריך עלות מעסיק בישראל">Israel employer-cost briefing</span>
+          <strong>₪149</strong>
+        </div>
+        <p class="fine" data-en="Informational estimate. Not accounting, legal, payroll, or tax advice." data-he="הערכה מידעית בלבד. זה אינו ייעוץ חשבונאי, משפטי, שכר או מס.">Informational estimate. Not accounting, legal, payroll, or tax advice.</p>
+      </div>
+
+      <form class="form-card" id="calc-form">
+        <label>
+          <span data-en="Monthly gross salary (ILS)" data-he="שכר ברוטו חודשי (₪)">Monthly gross salary (ILS)</span>
+          <input id="gross" name="gross" type="number" min="1" step="1" value="18000" required>
+        </label>
+        <label>
+          <span data-en="Role label (optional)" data-he="תפקיד (רשות)">Role label (optional)</span>
+          <input id="role" name="role" type="text" value="First Israeli hire">
+        </label>
+        <label>
+          <span data-en="Completed years of seniority" data-he="שנות ותק שהושלמו">Completed years of seniority</span>
+          <input id="seniority" name="seniority" type="number" min="0" step="1" value="0">
+        </label>
+        <label>
+          <span data-en="Monthly travel allowance (ILS)" data-he="נסיעות חודשיות (₪)">Monthly travel allowance (ILS)</span>
+          <input id="travel" name="travel" type="number" min="0" step="1" value="0">
+        </label>
+        <label>
+          <span data-en="Severance setting" data-he="הגדרת פיצויים">Severance setting</span>
+          <select id="severance">
+            <option value="section14">8.33% / Section 14</option>
+            <option value="mandatory">6% expansion-order minimum</option>
+          </select>
+        </label>
+        <label>
+          <span data-en="Pensionable salary" data-he="שכר קובע לפנסיה">Pensionable salary</span>
+          <select id="pension-base">
+            <option value="gross">Use full gross</option>
+            <option value="average-wage-cap">Cap at published average wage</option>
+          </select>
+        </label>
+        <div class="checks">
+          <label><input id="havraa" type="checkbox" checked> <span data-en="Include convalescence planning" data-he="כלול דמי הבראה לתכנון">Include convalescence planning</span></label>
+          <label><input id="hishtalmut" type="checkbox"> <span data-en="Include study fund 7.5%" data-he="כלול קרן השתלמות 7.5%">Include study fund 7.5%</span></label>
+        </div>
+        <p id="calc-error" class="error" hidden></p>
+        <p id="min-wage-note" class="note" hidden data-en="This gross is below the April 2026 adult monthly minimum wage of ₪6,443.85." data-he="הברוטו נמוך משכר המינימום החודשי למבוגר מאפריל 2026, ₪6,443.85.">This gross is below the April 2026 adult monthly minimum wage of ₪6,443.85.</p>
+      </form>
+    </section>
+
+    <section class="hero">
+      <div class="stub" id="stub">
+        <div class="stub-kicker" data-en="Employer stub · rates as of" data-he="תלוש מעסיק · שיעורים נכון ל">Employer stub · rates as of</div>
+        <div id="rates-as-of">2026-01-01</div>
+        <div class="stamp" id="total-stamp">—</div>
+        <div class="stub-meta"><span data-en="On-cost" data-he="עלות נלווית">On-cost</span><span id="result-oncost">—</span></div>
+        <div class="stub-meta"><span data-en="Annual" data-he="שנתי">Annual</span><span id="result-annual">—</span></div>
+        <div class="stub-meta"><span data-en="Load" data-he="שיעור העמסה">Load</span><span id="result-load">—</span></div>
+        <div id="result-lines"></div>
+      </div>
+      <div class="offer">
+        <h2 data-en="What ₪149 buys" data-he="מה מקבלים ב-₪149">What ₪149 buys</h2>
+        <ul>
+          <li data-en="A dated, source-cited HTML briefing you can print to PDF" data-he="תדריך HTML מתוארך עם מקורות, מוכן להדפסה ל-PDF">A dated, source-cited HTML briefing you can print to PDF</li>
+          <li data-en="Line-item employer cost using 2026 published rates" data-he="פירוט עלות מעסיק לפי שיעורים מפורסמים ל-2026">Line-item employer cost using 2026 published rates</li>
+          <li data-en="12-month cash table and first-year versus steady-state view" data-he="טבלת 12 חודשים והשוואת שנה ראשונה מול מצב יציב">12-month cash table and first-year versus steady-state view</li>
+          <li data-en="Side-by-side Section 14 versus expansion-order minimum" data-he="השוואה בין סעיף 14 לבין מינימום צו ההרחבה">Side-by-side Section 14 versus expansion-order minimum</li>
+        </ul>
+        <div class="actions">
+          <button type="button" id="download-briefing" class="secondary" data-en="Preview the briefing format" data-he="הצגת פורמט התדריך">Preview the briefing format</button>
+          <a class="buy blocked" id="buy" href="#owner-checkout" data-en="Checkout opens after the seller payment account is verified" data-he="התשלום ייפתח אחרי אימות חשבון הסליקה של המוכר">Checkout opens after the seller payment account is verified</a>
+        </div>
+        <p class="fine" id="owner-checkout" data-en="Paid checkout is an identity/KYC step the living owner must complete on Lemon Squeezy, Polar, or Paddle. The calculator and briefing engine already run without that account." data-he="פתיחת סליקה דורשת זיהוי של הבעלים ב-Lemon Squeezy, Polar או Paddle. המחשבון ומנוע התדריך כבר רצים בלי החשבון הזה.">Paid checkout is an identity/KYC step the living owner must complete on Lemon Squeezy, Polar, or Paddle. The calculator and briefing engine already run without that account.</p>
+        <p class="fine" data-en="Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month." data-he="בהמשך: Pro ₪99 לחודש · Agency ₪390 לחודש · Firm/API ₪1,500 לחודש.">Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month.</p>
+      </div>
+    </section>
+
+    <section class="legal">
+      <h2 data-en="Sources and limits" data-he="מקורות וגבולות">Sources and limits</h2>
+      <ul>
+        <li><a href="https://www.btl.gov.il/English%20Homepage/Insurance/Ratesandamount/Pages/forSalaried.aspx">Bituach Leumi salaried rates (2026 bands ₪7,703 / ₪51,910)</a></li>
+        <li><a href="https://www.kolzchut.org.il/he/%D7%97%D7%95%D7%91%D7%AA_%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D">Mandatory pension expansion order (6.5% / 6% / 6%)</a></li>
+        <li><a href="https://www.kolzchut.org.il/he/%D7%93%D7%9E%D7%99_%D7%94%D7%91%D7%A8%D7%90%D7%94">Convalescence pay day rate</a></li>
+      </ul>
+      <p data-en="CostToHire IL is a standalone information product operated from Israel. It does not file, submit, or represent anyone before an authority, and it does not touch payroll funds." data-he="CostToHire IL הוא מוצר מידע עצמאי שמופעל מישראל. הוא אינו מגיש דיווחים לרשות כלשהי ואינו נוגע בכספי שכר.">CostToHire IL is a standalone information product operated from Israel. It does not file, submit, or represent anyone before an authority, and it does not touch payroll funds.</p>
+      <p><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="Owner_Task.md">Owner tasks</a></p>
+    </section>
+  </div>
+
+  <script type="application/json" id="rates-data">
+{
+  "version": "2026.1",
+  "asOf": "2026-01-01",
+  "currency": "ILS",
+  "jurisdiction": "IL",
+  "bituachLeumi": {
+    "reducedLimitIls": 7703,
+    "ceilingIls": 51910,
+    "employerReducedRate": 0.0451,
+    "employerFullRate": 0.076,
+    "employeeNationalReducedRate": 0.0104,
+    "employeeNationalFullRate": 0.07,
+    "employeeHealthReducedRate": 0.0323,
+    "employeeHealthFullRate": 0.0517,
+    "effectiveFrom": "2026-01-01",
+    "sourceName": "National Insurance Institute — rates for salaried workers",
+    "sourceUrl": "https://www.btl.gov.il/English%20Homepage/Insurance/Ratesandamount/Pages/forSalaried.aspx",
+    "sourceUrlHe": "https://www.btl.gov.il/Insurance/Rates/Pages/%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D%20%D7%A9%D7%9B%D7%99%D7%A8%D7%99%D7%9D.aspx",
+    "notes": "Employer pays national insurance only (no employer health levy). Reduced band is the wage share up to 60% of the NII average wage (NIS 7,703 from 1 Jan 2026). Full band is the wage share above that limit up to the monthly ceiling (NIS 51,910 from 1 Jan 2026). Wage above the ceiling is not charged."
+  },
+  "pension": {
+    "employerTagmulimRate": 0.065,
+    "employeeTagmulimRate": 0.06,
+    "employerSeveranceMandatoryRate": 0.06,
+    "employerSeveranceSection14Rate": 0.0833,
+    "averageWageCapIls": 13769,
+    "effectiveFrom": "2017-01-01",
+    "sourceName": "Kol Zchut — mandatory pension insurance for employees (expansion order)",
+    "sourceUrl": "https://www.kolzchut.org.il/he/%D7%97%D7%95%D7%91%D7%AA_%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D",
+    "officialGuideUrl": "https://www.gov.il/he/departments/guides/pension-insurance",
+    "notes": "From January 2017 the general expansion order is 6.5% employer tagmulim + 6% employee tagmulim + 6% employer severance. 8.33% is the full monthly severance reserve commonly used under a Section 14 arrangement, not the expansion-order minimum. The order lets the employer cap the determining salary at the published average wage unless the contract uses a higher determining salary. The 2026 average-wage cap figure used here is the NIS 13,769 amount published on the Kol Zchut page as of 2026."
+  },
+  "hishtalmut": {
+    "employerRate": 0.075,
+    "employeeRate": 0.025,
+    "mandatory": false,
+    "sourceName": "Common study-fund arrangement (not a universal statutory minimum)",
+    "sourceUrl": "https://www.kolzchut.org.il/he/%D7%A7%D7%A8%D7%9F_%D7%94%D7%A9%D7%AA%D7%9C%D7%9E%D7%95%D7%AA",
+    "notes": "Keren hishtalmut is customary in many professional roles and some collective agreements. It is not treated as a universal mandatory cost in this engine unless the user turns it on."
+  },
+  "havraa": {
+    "privateSectorDayRateIls": 418,
+    "pendingPrivateSectorDayRateIls": 451.5,
+    "usingPendingRate": false,
+    "daysByCompletedYears": [
+      { "minYears": 1, "maxYears": 1, "days": 5 },
+      { "minYears": 2, "maxYears": 3, "days": 6 },
+      { "minYears": 4, "maxYears": 10, "days": 7 },
+      { "minYears": 11, "maxYears": 15, "days": 8 },
+      { "minYears": 16, "maxYears": 19, "days": 9 },
+      { "minYears": 20, "maxYears": 99, "days": 10 }
+    ],
+    "sourceName": "Kol Zchut — convalescence pay (dmei havra'a)",
+    "sourceUrl": "https://www.kolzchut.org.il/he/%D7%93%D7%9E%D7%99_%D7%94%D7%91%D7%A8%D7%90%D7%94",
+    "notes": "Private-sector day rate in force on the cited page is NIS 418. A 451.5 rate has been agreed but Kol Zchut states the expansion order had not yet been signed. Entitlement starts after one completed year. This engine amortizes the annual cash amount across 12 months as a planning figure, not as a monthly payroll statute."
+  },
+  "minimumWage": {
+    "monthlyIls": 6443.85,
+    "hourly182Ils": 35.4,
+    "effectiveFrom": "2026-04-01",
+    "sourceName": "National Insurance Institute — minimum wage table",
+    "sourceUrl": "https://www.btl.gov.il/Mediniyut/GeneralData/Pages/%D7%A9%D7%9B%D7%A8%20%D7%9E%D7%99%D7%A0%D7%99%D7%9E%D7%95%D7%9D.aspx",
+    "notes": "Monthly adult minimum wage from 1 April 2026. Used only as a warning threshold, not as a substitute for the user's salary input."
+  },
+  "disclaimer": "Informational estimate from published rates. Not accounting, legal, payroll, or tax advice. Not affiliated with the National Insurance Institute, the Israel Tax Authority, or the Ministry of Labor. Verify with a licensed accountant or payroll bureau before relying on any figure."
+}
+  </script>
+  <script src="src/offer.js"></script>
+  <script src="src/employerCost.js"></script>
+  <script src="src/briefing.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
