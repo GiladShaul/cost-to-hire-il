@@ -27,6 +27,11 @@ html, body {
   font-family: "IBM Plex Sans", "IBM Plex Sans Hebrew", "Segoe UI", sans-serif;
 }
 
+html[dir="rtl"],
+html[dir="rtl"] body {
+  font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
 body {
   min-height: 100vh;
 }
@@ -102,6 +107,27 @@ h1 {
   font-size: clamp(2rem, 4vw, 3.3rem);
   line-height: 1.05;
   margin: 0 0 16px;
+}
+
+html[dir="rtl"] h1 {
+  font-family: "IBM Plex Sans Hebrew", "IBM Plex Serif", sans-serif;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea,
+html[dir="rtl"] button,
+html[dir="rtl"] .buy {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .form-card,
+html[dir="rtl"] .offer,
+html[dir="rtl"] .legal,
+html[dir="rtl"] .stub {
+  direction: rtl;
+  text-align: right;
 }
 
 .lede {
@@ -192,6 +218,12 @@ input, select {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--carbon);
+}
+
+html[dir="rtl"] .stub-kicker {
+  font-family: "IBM Plex Sans Hebrew", "IBM Plex Sans", sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .stamp {

@@ -66,11 +66,45 @@ try {
   if (!stub || stub.width < 200 || stub.height < 200) {
     throw new Error("stub is not drawn at the intended size");
   }
+  await page.click("#lang-he");
+  const dir = await page.evaluate(function () {
+    return document.documentElement.dir;
+  });
+  const lang = await page.evaluate(function () {
+    return document.documentElement.lang;
+  });
+  const heFields = await page.evaluate(function () {
+    return {
+      role: document.getElementById("role").value,
+      severance: Array.from(document.querySelectorAll("#severance option")).map(function (o) { return o.textContent; }),
+      pension: Array.from(document.querySelectorAll("#pension-base option")).map(function (o) { return o.textContent; }),
+      grossLabel: document.getElementById("gross").closest("label").querySelector("span").textContent,
+      formDir: getComputedStyle(document.getElementById("calc-form")).direction,
+    };
+  });
+  if (dir !== "rtl" || lang !== "he") {
+    throw new Error("Hebrew toggle did not switch the document to he/rtl");
+  }
+  if (heFields.role.indexOf("העובד") === -1) {
+    throw new Error("role field stayed English: " + heFields.role);
+  }
+  if (heFields.severance.join(" ").indexOf("סעיף") === -1) {
+    throw new Error("severance options stayed English: " + heFields.severance.join(" | "));
+  }
+  if (heFields.pension.join(" ").indexOf("ברוטו") === -1) {
+    throw new Error("pension options stayed English: " + heFields.pension.join(" | "));
+  }
+  if (heFields.grossLabel.indexOf("ברוטו") === -1) {
+    throw new Error("gross label stayed English: " + heFields.grossLabel);
+  }
+  if (heFields.formDir !== "rtl") {
+    throw new Error("form is not RTL: " + heFields.formDir);
+  }
   await page.screenshot({ path: screenshotPath, fullPage: true });
   if (errors.length) {
     throw new Error("page errors: " + errors.join(" | "));
   }
-  console.log("probe_ok before=" + before + " after=" + after + " wrap=" + Math.round(box.width) + "x" + Math.round(box.height));
+  console.log("probe_ok before=" + before + " after=" + after + " wrap=" + Math.round(box.width) + "x" + Math.round(box.height) + " he_rtl=1");
 } finally {
   await browser.close();
   server.close();

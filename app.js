@@ -31,6 +31,16 @@
     return "₪" + Number(amount).toFixed(2);
   }
 
+  function localizeError(message) {
+    const he = document.documentElement.lang === "he";
+    if (!he) return message;
+    if (/greater than 0/.test(message)) return "יש להזין שכר ברוטו גדול מאפס";
+    if (/seniorityYears/.test(message)) return "יש להזין ותק של אפס שנים או יותר";
+    if (/travelIls/.test(message)) return "יש להזין סכום נסיעות של אפס או יותר";
+    if (/Rates table/.test(message)) return "טבלת השיעורים חסרה";
+    return "לא ניתן לחשב את העלות. בדקו את הנתונים.";
+  }
+
   function renderError(message) {
     $("calc-error").hidden = !message;
     $("calc-error").textContent = message || "";
@@ -73,7 +83,7 @@
       render(result, rates);
       return result;
     } catch (err) {
-      renderError(err.message);
+      renderError(localizeError(err.message));
       return null;
     }
   }
@@ -92,13 +102,32 @@
     URL.revokeObjectURL(url);
   }
 
+  function syncDefaultField(node, he) {
+    if (!node) return;
+    const en = node.getAttribute("data-en-value");
+    const heb = node.getAttribute("data-he-value");
+    if (!en || !heb) return;
+    if (node.value === en || node.value === heb || node.value.trim() === "") {
+      node.value = he ? heb : en;
+    }
+  }
+
   function setLang(lang) {
     const he = lang === "he";
     document.documentElement.lang = he ? "he" : "en";
     document.documentElement.dir = he ? "rtl" : "ltr";
     document.querySelectorAll("[data-en]").forEach(function (node) {
-      node.textContent = he ? node.getAttribute("data-he") : node.getAttribute("data-en");
+      const text = he ? node.getAttribute("data-he") : node.getAttribute("data-en");
+      if (node.tagName === "META") {
+        node.setAttribute("content", text);
+      } else {
+        node.textContent = text;
+      }
     });
+    document.querySelectorAll("[data-en-href]").forEach(function (node) {
+      node.setAttribute("href", he ? node.getAttribute("data-he-href") : node.getAttribute("data-en-href"));
+    });
+    syncDefaultField($("role"), he);
     $("lang-en").setAttribute("aria-pressed", he ? "false" : "true");
     $("lang-he").setAttribute("aria-pressed", he ? "true" : "false");
     calculate();

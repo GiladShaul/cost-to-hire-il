@@ -41,6 +41,27 @@ describe("sellable offer surface", function () {
     assert.match(embedded.bituachLeumi.sourceUrl, /^https:\/\//);
   });
 
+  it("ships Hebrew RTL copy for every customer field", function () {
+    const html = read("index.html");
+    const hebrew = /[\u0590-\u05FF]/;
+    ["severance", "pension-base"].forEach(function (id) {
+      const block = html.match(new RegExp('id="' + id + '"[\\s\\S]*?<\\/select>'));
+      assert.ok(block, id + " select missing");
+      const options = block[0].match(/<option[^>]*>/g) || [];
+      assert.ok(options.length >= 2, id + " needs options");
+      options.forEach(function (tag) {
+        assert.match(tag, /data-he="/);
+        assert.match(tag, hebrew);
+      });
+    });
+    assert.match(html, /id="role"[^>]*data-he-value="העובד הישראלי הראשון"/);
+    assert.match(html, /data-he="שכר ברוטו חודשי/);
+    assert.match(html, /data-he="הגדרת פיצויים"/);
+    assert.match(html, /data-he="שכר קובע לפנסיה"/);
+    assert.match(html, /data-he="8\.33% \/ סעיף 14"/);
+    assert.match(html, /data-he="לפי מלוא הברוטו"/);
+  });
+
   it("keeps checkout blocked until owner KYC is done", function () {
     const status = Offer.checkoutStatus(false);
     assert.equal(status.state, "owner-kyc-blocked");

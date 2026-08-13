@@ -34,6 +34,21 @@ describe("generateBriefing", function () {
     assert.equal(pack.filename, "cost-to-hire-il-18000-briefing.html");
   });
 
+  it("writes a fully Hebrew RTL briefing when locale is he", function () {
+    const pack = Briefing.generateBriefing(
+      { grossIls: 18000, locale: "he", roleLabel: "העובד הישראלי הראשון" },
+      rates,
+      { generatedAt: "2026-08-13T00:00:00.000Z", sample: true }
+    );
+    assert.match(pack.html, /lang="he"/);
+    assert.match(pack.html, /dir="rtl"/);
+    assert.match(pack.html, /תדריך עלות מעסיק בישראל/);
+    assert.match(pack.html, /טבלת מזומנים ל־12 חודשים/);
+    assert.match(pack.html, /העובד הישראלי הראשון/);
+    assert.doesNotMatch(pack.html, /12-month cash table/);
+    assert.doesNotMatch(pack.html, /First year versus steady state/);
+  });
+
   it("marks a sample briefing without changing the calculated total", function () {
     const input = { grossIls: 9000 };
     const live = Briefing.generateBriefing(input, rates, { sample: false, generatedAt: "2026-08-13T00:00:00.000Z" });
