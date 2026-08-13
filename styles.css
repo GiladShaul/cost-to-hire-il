@@ -117,7 +117,7 @@ h1 {
   margin: 18px 0;
   background: var(--mark);
   padding: 8px 12px;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: "Segoe UI", "IBM Plex Sans", sans-serif;
 }
 
 .form-card,
@@ -199,7 +199,7 @@ input, select {
   margin: 14px 0 8px;
   border: 4px solid var(--stamp);
   color: var(--stamp);
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: "Segoe UI", "IBM Plex Sans", sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   padding: 8px 12px;
   transform: rotate(-2deg);
@@ -219,7 +219,7 @@ input, select {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-family: "Segoe UI", "IBM Plex Sans", sans-serif;
   font-size: 0.92rem;
   border-bottom: 1px dotted var(--grid);
   padding: 6px 0;
