@@ -93,9 +93,9 @@
         </ul>
         <div class="actions">
           <button type="button" id="download-briefing" class="secondary" data-en="Preview the briefing format" data-he="הצגת פורמט התדריך">Preview the briefing format</button>
-          <a class="buy blocked" id="buy" href="#owner-checkout" data-en="Checkout opens after the seller payment account is verified" data-he="התשלום ייפתח אחרי אימות חשבון הסליקה של המוכר">Checkout opens after the seller payment account is verified</a>
+          <a class="buy" id="buy" href="#buy" data-en="Pay and download the briefing" data-he="שלמו והורידו את התדריך">Pay and download the briefing</a>
         </div>
-        <p class="fine" id="owner-checkout" data-en="Paid checkout is an identity/KYC step the living owner must complete on Lemon Squeezy, Polar, or Paddle. The calculator and briefing engine already run without that account." data-he="פתיחת סליקה דורשת זיהוי של הבעלים ב-Lemon Squeezy, Polar או Paddle. המחשבון ומנוע התדריך כבר רצים בלי החשבון הזה.">Paid checkout is an identity/KYC step the living owner must complete on Lemon Squeezy, Polar, or Paddle. The calculator and briefing engine already run without that account.</p>
+        <p class="fine" id="owner-checkout" data-en="Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically." data-he="התשלום בכרטיס עובר דרך Paddle, שהיא סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום יורד התדריך בלי סימן טיוטה.">Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically.</p>
         <p class="fine" data-en="Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month." data-he="בהמשך: מקצועי ₪99 לחודש · סוכנות ₪390 לחודש · משרד וממשק ₪1,500 לחודש.">Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month.</p>
       </div>
     </section>
@@ -180,9 +180,11 @@
   "disclaimer": "Informational estimate from published rates. Not accounting, legal, payroll, or tax advice. Not affiliated with the National Insurance Institute, the Israel Tax Authority, or the Ministry of Labor. Verify with a licensed accountant or payroll bureau before relying on any figure."
 }
   </script>
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
   <script src="src/offer.js"></script>
   <script src="src/employerCost.js"></script>
   <script src="src/briefing.js"></script>
+  <script src="src/paddleConfig.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -88,9 +88,26 @@
     }
   }
 
-  function downloadBriefing() {
+  function hasPaid() {
+    try {
+      return sessionStorage.getItem("costtohire-paid") === "1";
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function markPaid() {
+    try {
+      sessionStorage.setItem("costtohire-paid", "1");
+    } catch (err) {
+      /* ignore */
+    }
+  }
+
+  function downloadBriefing(sample) {
     const rates = loadRates();
-    const pack = Briefing.generateBriefing(currentInput(), rates, { sample: true });
+    const paid = sample === false || hasPaid();
+    const pack = Briefing.generateBriefing(currentInput(), rates, { sample: !paid });
     const blob = new Blob([pack.html], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -100,6 +117,76 @@
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
+  }
+
+  function setCheckoutNote(en, he) {
+    const note = $("owner-checkout");
+    if (!note) return;
+    note.setAttribute("data-en", en);
+    note.setAttribute("data-he", he);
+    note.textContent = document.documentElement.lang === "he" ? he : en;
+  }
+
+  function openPaddleCheckout() {
+    if (typeof Paddle === "undefined" || !PaddleConfig.isReady()) {
+      setCheckoutNote(
+        "Paddle.js did not load. Check the connection and try again.",
+        "Paddle לא נטען. בדקו את החיבור ונסו שוב."
+      );
+      return;
+    }
+    if (!calculate()) return;
+    Paddle.Checkout.open({
+      items: PaddleConfig.checkoutItems(),
+      settings: {
+        displayMode: "overlay",
+        theme: "light",
+        locale: document.documentElement.lang === "he" ? "en" : "en",
+        successUrl: PaddleConfig.getConfig().defaultPaymentLink + "?paid=1",
+      },
+    });
+  }
+
+  function initPaddle() {
+    const buy = $("buy");
+    if (!PaddleConfig.isReady()) return;
+    const ready = Offer.checkoutStatus(true);
+    buy.classList.remove("blocked");
+    buy.setAttribute("data-en", ready.labelEn);
+    buy.setAttribute("data-he", ready.labelHe);
+    buy.textContent = document.documentElement.lang === "he" ? ready.labelHe : ready.labelEn;
+    buy.setAttribute("href", "#buy");
+    setCheckoutNote(
+      "Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically.",
+      "התשלום בכרטיס עובר דרך Paddle, שהיא סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום יורד התדריך בלי סימן טיוטה."
+    );
+    if (typeof Paddle === "undefined") {
+      setCheckoutNote(
+        "Paddle.js did not load. Checkout cannot open on this page load.",
+        "Paddle לא נטען. לא ניתן לפתוח תשלום בטעינה זו."
+      );
+      return;
+    }
+    Paddle.Initialize({
+      token: PaddleConfig.getConfig().token,
+      eventCallback: function (event) {
+        if (!event || !event.name) return;
+        if (event.name === "checkout.completed") {
+          markPaid();
+          downloadBriefing(false);
+        }
+        if (event.name === "checkout.error" || event.name === "checkout.warning") {
+          setCheckoutNote(
+            "Paddle could not complete checkout. Confirm cost.vinesautomation.com is the default payment link and the domain is approved.",
+            "Paddle לא השלים את התשלום. ודאו ש-cost.vinesautomation.com מוגדר כקישור התשלום וששם המתחם מאושר."
+          );
+        }
+      },
+    });
+    buy.addEventListener("click", function (event) {
+      event.preventDefault();
+      openPaddleCheckout();
+    });
   }
 
   function syncDefaultField(node, he) {
@@ -144,7 +231,7 @@
     $("download-briefing").addEventListener("click", function (event) {
       event.preventDefault();
       if (calculate()) {
-        downloadBriefing();
+        downloadBriefing(true);
       }
     });
     $("lang-en").addEventListener("click", function () { setLang("en"); });
@@ -152,10 +239,17 @@
     const params = new URLSearchParams(location.search);
     if (params.get("gross")) $("gross").value = params.get("gross");
     if (params.get("role")) $("role").value = params.get("role");
+    if (params.get("paid") === "1") {
+      markPaid();
+    }
+    initPaddle();
     if (params.get("lang") === "he") {
       setLang("he");
     } else {
       calculate();
+    }
+    if (hasPaid() && calculate()) {
+      downloadBriefing(false);
     }
   }
 

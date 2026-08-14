@@ -24,11 +24,10 @@ Do not put passwords, government identifiers, identity documents, payment detail
 
 ### 2. Create the merchant-of-record account
 
-- **Status:** Open
-- **Needed by:** Before the ₪149 checkout can charge a card.
-- **Owner action:** Personally open Lemon Squeezy, Polar, or Paddle. Complete their identity check. Connect a payout account you control. Prefer a merchant of record so they handle foreign sales tax. Do not give the agent passwords or one-time codes.
-- **Return to the agent:** Provider name, public checkout or product URL, payout currency, and any account restriction. No secrets.
-- **Blocking effect:** Blocks live card checkout only. The site, calculator, and briefing engine stay live.
+- **Status:** Complete
+- **Owner action:** Live Paddle account is connected. Client-side token and price `pri_01kzzgz4k6v40cseed86rhs3pr` are on the site. Catalog charge is USD.
+- **Return to the agent:** Paddle live token and price ID received. No secrets stored beyond the publishable client token.
+- **Blocking effect:** None for opening checkout. If Paddle shows a domain error, approve `cost.vinesautomation.com` under Checkout → Website approval and set it as the default payment link.
 
 ### 3. Custom domain
 
@@ -55,4 +54,4 @@ Do not put passwords, government identifiers, identity documents, payment detail
 
 ## Current owner action
 
-**Task 1** and **Task 2** are open. They are the only blockers on taking money. They do not block the public customer-acquisition path or delivery of the briefing format.
+**Task 1** is still open (Israeli tax files). Checkout can take a card through Paddle. Keeping the revenue still needs the tax classification.

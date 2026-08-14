@@ -22,7 +22,9 @@ describe("sellable offer surface", function () {
     assert.match(html, /id="gross"/);
     assert.match(html, /id="total-stamp"/);
     assert.match(html, /id="buy"/);
-    assert.match(html, /Checkout opens after the seller payment account is verified/);
+    assert.match(html, /Pay and download the briefing/);
+    assert.match(html, /cdn\.paddle\.com\/paddle\/v2\/paddle\.js/);
+    assert.match(html, /src\/paddleConfig\.js/);
     assert.match(html, /Not accounting, legal, payroll, or tax advice/);
     assert.doesNotMatch(html, /password|secret|api[_-]?key/i);
     assert.equal(offer.priceIls, 149);
@@ -62,10 +64,11 @@ describe("sellable offer surface", function () {
     assert.match(html, /data-he="לפי מלוא הברוטו"/);
   });
 
-  it("keeps checkout blocked until owner KYC is done", function () {
-    const status = Offer.checkoutStatus(false);
-    assert.equal(status.state, "owner-kyc-blocked");
+  it("shows the ready Paddle checkout label on the customer page", function () {
+    const status = Offer.checkoutStatus(true);
+    assert.equal(status.state, "ready");
     const html = read("index.html");
     assert.match(html, new RegExp(status.labelEn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(html, /charged in USD/);
   });
 });

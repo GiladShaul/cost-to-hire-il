@@ -82,8 +82,8 @@
     if (ownerPaymentReady) {
       return {
         state: "ready",
-        labelEn: "Pay ₪149 and download the briefing",
-        labelHe: "שלמו ₪149 והורידו את התדריך",
+        labelEn: "Pay and download the briefing",
+        labelHe: "שלמו והורידו את התדריך",
       };
     }
     return {
