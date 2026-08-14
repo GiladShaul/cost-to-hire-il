@@ -83,7 +83,9 @@ function pageHtml(page, result) {
 }
 
 function sitemapXml(pages) {
-  const urls = ["", "embed.html"].concat(pages.map(function (page) { return page.slug + ".html"; }));
+  const urls = ["", "embed.html", "terms.html", "privacy.html", "refund.html"].concat(
+    pages.map(function (page) { return page.slug + ".html"; })
+  );
   const body = urls
     .map(function (rel) {
       return "  <url><loc>" + origin + "/" + rel + "</loc></url>";

@@ -18,40 +18,47 @@ Do **Step 1** this afternoon. Do **Step 2** this week. Acquisition pages and com
 
 ---
 
-## Step 1 — Verify live Paddle checkout
+## Step 1 — Unblock live Paddle checkout (and use HTTPS)
 
 - **Status:** Open
-- **Needed by:** Before sending traffic or taking a real card.
-- **Time:** about 10 minutes.
-- **Why you:** only you can change Paddle Checkout settings and website approval.
+- **Needed by:** Before a stranger can pay. This is why Pay currently says “Something went wrong.”
+- **Why you:** only the Paddle account owner can approve the subdomain and set the default payment link.
 
-### Do this
+Paddle will **not** open a live overlay on a subdomain until that exact host is approved. Approving `vinesautomation.com` is not enough. You must approve **`cost.vinesautomation.com`**.
 
-1. Open the live site: https://cost.vinesautomation.com/
-2. Enter any salary (the default is fine) and click **Pay and download the briefing**.
-3. **If the Paddle overlay opens:** Step 1 is done. Close the overlay. Do **not** pay with a real card unless you want a live test sale.
-4. **If you see an error or nothing happens:** stay in the **live** Paddle dashboard (not Sandbox) and:
-   1. Go to **Checkout → Checkout settings → Default payment link**.
-   2. Set it to `https://cost.vinesautomation.com` and save.
-   3. Go to **Checkout → Website approval**.
-   4. Add `cost.vinesautomation.com` if it is missing.
-   5. Wait until the status is **Approved**.
-   6. Repeat step 2 on the live site.
-5. Open **Catalog → Products** → the briefing product → **Prices**.
-   - Confirm the live price is about **USD 40** if you still want this to match a ₪149 product.
-   - If it is **USD 149**, change it to about **USD 40** (₪149). Tell the agent the new amount only — not keys.
+### A. Always open the secure URL
 
-### Return to the agent
+Use this, including `https://`:
 
-One line, no secrets:
+**https://cost.vinesautomation.com/**
 
-- `overlay: opened` or `overlay: error` (paste the on-screen words, not a screenshot of keys)
-- `website approval: approved / pending`
-- `paddle price: $__`
+Do **not** use `http://`, `www.cost.vinesautomation.com`, or the parked root `vinesautomation.com`. Those are different hosts. The calculator host already has a Let’s Encrypt certificate (valid to 12 Nov 2026). If the lock is missing, you are on the wrong URL.
+
+### B. Paddle dashboard (live account, not Sandbox)
+
+1. Open [Website approval](https://vendors.paddle.com/request-domain-approval) (**Checkout → Website approval**).
+2. Click **Add a new domain**.
+3. Enter **`cost.vinesautomation.com`** (no `https://`, no path).
+4. Submit. Automatic approval is common; if it goes to manual review it can take several business days.
+5. Open **Checkout → Checkout settings → Default payment link**.
+6. Set it to **`https://cost.vinesautomation.com`** and save.
+
+Paddle reviews the live site for: product description, price, what you get, and links to **Terms**, **Privacy**, and **Refunds**. Those three pages are now in the site footer.
+
+### C. Retry Pay
+
+Hard-refresh https://cost.vinesautomation.com/ and click **Pay and download the briefing** again.
+
+- Overlay opens → write `overlay: opened` and `website approval: approved`.
+- Still “Something went wrong” → copy the red **Paddle status** line on the page (not your password) and the Website approval status (`approved` / `pending` / `rejected`).
+
+### D. Price check
+
+**Catalog → Products → Prices.** If the amount is **$149**, change it to about **$40** so it matches a ₪149 product. Reply with `paddle price: $__` only.
 
 ### Blocking effect
 
-Blocks confidence that a stranger can pay. Does not block the calculator, SEO pages, or preview briefing.
+Blocks live card checkout. Does not block the free calculator or preview briefing.
 
 ---
 

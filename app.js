@@ -148,13 +148,26 @@
     if (!calculate()) return;
     Paddle.Checkout.open({
       items: PaddleConfig.checkoutItems(),
-      settings: {
-        displayMode: "overlay",
-        theme: "light",
-        locale: document.documentElement.lang === "he" ? "en" : "en",
-        successUrl: PaddleConfig.getConfig().defaultPaymentLink + "?paid=1",
-      },
     });
+  }
+
+  function describePaddleEvent(event) {
+    if (!event) return "Paddle returned an empty error.";
+    const data = event.data || event.detail || event;
+    const bits = [];
+    if (event.name) bits.push(event.name);
+    if (data && data.code) bits.push(String(data.code));
+    if (data && data.detail) bits.push(String(data.detail));
+    if (data && data.message) bits.push(String(data.message));
+    if (data && data.error) bits.push(typeof data.error === "string" ? data.error : JSON.stringify(data.error));
+    if (bits.length <= 1) {
+      try {
+        bits.push(JSON.stringify(data));
+      } catch (err) {
+        bits.push(String(event.name || "checkout.error"));
+      }
+    }
+    return bits.join(" — ");
   }
 
   function initPaddle() {
@@ -186,9 +199,15 @@
           downloadBriefing(false);
         }
         if (event.name === "checkout.error" || event.name === "checkout.warning") {
+          const detail = describePaddleEvent(event);
+          const status = $("paddle-status");
+          if (status) {
+            status.hidden = false;
+            status.textContent = detail;
+          }
           setCheckoutNote(
-            "Paddle could not complete checkout. Confirm cost.vinesautomation.com is the default payment link and the domain is approved.",
-            "Paddle לא השלים את התשלום. ודאו ש-cost.vinesautomation.com מוגדר כקישור התשלום וששם המתחם מאושר."
+            "Paddle blocked the overlay. In live Paddle submit cost.vinesautomation.com under Checkout → Website approval (the subdomain must be approved on its own) and set Default payment link to https://cost.vinesautomation.com. Then retry. Detail: " + detail,
+            "Paddle חסם את התשלום. בחשבון החי שלחו לאישור את cost.vinesautomation.com תחת Checkout → Website approval, והגדירו Default payment link ל־https://cost.vinesautomation.com. פרט: " + detail
           );
         }
       },

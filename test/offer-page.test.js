@@ -26,6 +26,9 @@ describe("sellable offer surface", function () {
     assert.match(html, /cdn\.paddle\.com\/paddle\/v2\/paddle\.js/);
     assert.match(html, /src\/paddleConfig\.js/);
     assert.match(html, /Not accounting, legal, payroll, or tax advice/);
+    assert.match(html, /href="terms.html"/);
+    assert.match(html, /href="privacy.html"/);
+    assert.match(html, /href="refund.html"/);
     assert.doesNotMatch(html, /password|secret|api[_-]?key/i);
     assert.equal(offer.priceIls, 149);
     assert.equal(offer.delivery, "instant-html-briefing");
@@ -70,5 +73,15 @@ describe("sellable offer surface", function () {
     const html = read("index.html");
     assert.match(html, new RegExp(status.labelEn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
     assert.match(html, /charged in USD/);
+  });
+
+  it("publishes terms, privacy, and refund pages for Paddle domain review", function () {
+    ["terms.html", "privacy.html", "refund.html"].forEach(function (name) {
+      const body = read(name);
+      assert.match(body, /CostToHire IL/);
+      assert.doesNotMatch(body, /password|secret|api[_-]?key/i);
+    });
+    assert.match(read("refund.html"), /14 days/);
+    assert.match(read("terms.html"), /merchant of record/);
   });
 });
