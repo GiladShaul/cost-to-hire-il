@@ -37,10 +37,10 @@ This is not a clone of the sibling Iceland travel affiliate, hotel affiliate, us
 | Use | ILS | Notes |
 |---|---:|---|
 | GitHub Pages hosting | 0 | Public customer path |
-| Domain `costtohireil.com` (optional, owner purchase) | 60 | One year, privacy on, no upsells. Reject if premium. |
+| Custom hostname on existing Cloudflare domain | 0 | `cost.vinesautomation.com` — no new purchase |
 | Merchant-of-record account | 0 | Setup is free; fees are a % of sales |
 | Accountant consult reserve | 400 | Only if the owner wants a subsidized first-year classification check |
-| Unallocated reserve | 540 | Do not spend on ads or inventory in v1 |
+| Unallocated reserve | 600 | Do not spend on ads or inventory in v1 |
 | **Total authorized** | **1,000** | Nothing is pre-spent by the agent |
 
 No inventory. No paid ads required to start. No software licenses.
@@ -53,7 +53,7 @@ Ongoing owner load, by design:
 
 - Payment-account KYC once.
 - Tax file / VAT classification once, then a monthly reconcile when money arrives.
-- Optional: buy the domain.
+- Domain already attached: `cost.vinesautomation.com`.
 - Optional: one 20-minute batch a week to send any account-bound message the agent drafted.
 - Convert to Osek Murshe only when turnover approaches the Patur ceiling.
 

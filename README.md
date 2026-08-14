@@ -6,7 +6,7 @@ This is an information product operated from Israel. It is not accounting, legal
 
 ## Customer
 
-Public path: https://giladshaul.github.io/cost-to-hire-il/
+Public path: https://cost.vinesautomation.com/
 
 Open that URL or local `index.html`. Enter a monthly gross salary. The stub prints the employer cost. “Preview the briefing format” downloads the delivery HTML. Live card checkout waits on the owner KYC tasks in `Owner_Task.md`.
 

@@ -30,13 +30,12 @@ Do not put passwords, government identifiers, identity documents, payment detail
 - **Return to the agent:** Provider name, public checkout or product URL, payout currency, and any account restriction. No secrets.
 - **Blocking effect:** Blocks live card checkout only. The site, calculator, and briefing engine stay live.
 
-### 3. Optional domain purchase
+### 3. Custom domain
 
-- **Status:** Waiting
-- **Trigger:** Owner wants a branded host instead of GitHub Pages.
-- **Owner action:** Buy `costtohireil.com` for one year with registrant privacy. Do not buy a premium name or hosting/email upsells. Stay inside the ILS 1,000 capital cap; reject the name if it is more than ILS 80.
-- **Return to the agent:** Registrar name and confirmation that the domain is yours. No registrar credentials.
-- **Blocking effect:** Does not block the GitHub Pages customer path.
+- **Status:** Complete
+- **Owner action:** Pointed the existing Cloudflare domain at the product. Public hostname is `cost.vinesautomation.com`. No new domain was purchased.
+- **Return to the agent:** DNS CNAME for `cost` → `giladshaul.github.io` is live.
+- **Blocking effect:** None.
 
 ### 4. Legal seller details for the public terms
 
