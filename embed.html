@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CostToHire IL embed</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>body{min-height:0}.wrap{width:min(520px,calc(100% - 16px));padding:12px 0 24px}.hero{grid-template-columns:1fr;margin-top:12px}</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">CostToHire IL<strong>The shekel cost of a hire</strong></div>
+    <form class="form-card" id="calc-form">
+      <label><span>Monthly gross salary (ILS)</span><input id="gross" type="number" min="1" value="18000"></label>
+      <label><span>Role</span><input id="role" type="text" value="First Israeli hire"></label>
+      <input id="seniority" type="hidden" value="0">
+      <input id="travel" type="hidden" value="0">
+      <select id="severance" hidden><option value="section14" selected>section14</option></select>
+      <select id="pension-base" hidden><option value="gross" selected>gross</option></select>
+      <input id="havraa" type="checkbox" checked hidden>
+      <input id="hishtalmut" type="checkbox" hidden>
+      <p id="calc-error" class="error" hidden></p>
+    </form>
+    <div class="stub" id="stub">
+      <div class="stub-kicker">Employer stub</div>
+      <div id="rates-as-of"></div>
+      <div class="stamp" id="total-stamp">—</div>
+      <div class="stub-meta"><span>On-cost</span><span id="result-oncost">—</span></div>
+      <div class="stub-meta"><span>Annual</span><span id="result-annual">—</span></div>
+      <div id="result-lines"></div>
+    </div>
+    <p><a class="buy" href="https://cost.vinesautomation.com/?gross=18000" target="_blank" rel="noopener">Open full calculator</a></p>
+  </div>
+  <script type="application/json" id="rates-data">
+{
+  "version": "2026.1",
+  "asOf": "2026-01-01",
+  "currency": "ILS",
+  "jurisdiction": "IL",
+  "bituachLeumi": {
+    "reducedLimitIls": 7703,
+    "ceilingIls": 51910,
+    "employerReducedRate": 0.0451,
+    "employerFullRate": 0.076,
+    "employeeNationalReducedRate": 0.0104,
+    "employeeNationalFullRate": 0.07,
+    "employeeHealthReducedRate": 0.0323,
+    "employeeHealthFullRate": 0.0517,
+    "effectiveFrom": "2026-01-01",
+    "sourceName": "National Insurance Institute — rates for salaried workers",
+    "sourceUrl": "https://www.btl.gov.il/English%20Homepage/Insurance/Ratesandamount/Pages/forSalaried.aspx",
+    "sourceUrlHe": "https://www.btl.gov.il/Insurance/Rates/Pages/%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D%20%D7%A9%D7%9B%D7%99%D7%A8%D7%99%D7%9D.aspx",
+    "notes": "Employer pays national insurance only (no employer health levy). Reduced band is the wage share up to 60% of the NII average wage (NIS 7,703 from 1 Jan 2026). Full band is the wage share above that limit up to the monthly ceiling (NIS 51,910 from 1 Jan 2026). Wage above the ceiling is not charged."
+  },
+  "pension": {
+    "employerTagmulimRate": 0.065,
+    "employeeTagmulimRate": 0.06,
+    "employerSeveranceMandatoryRate": 0.06,
+    "employerSeveranceSection14Rate": 0.0833,
+    "averageWageCapIls": 13769,
+    "effectiveFrom": "2017-01-01",
+    "sourceName": "Kol Zchut — mandatory pension insurance for employees (expansion order)",
+    "sourceUrl": "https://www.kolzchut.org.il/he/%D7%97%D7%95%D7%91%D7%AA_%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D",
+    "officialGuideUrl": "https://www.gov.il/he/departments/guides/pension-insurance",
+    "notes": "From January 2017 the general expansion order is 6.5% employer tagmulim + 6% employee tagmulim + 6% employer severance. 8.33% is the full monthly severance reserve commonly used under a Section 14 arrangement, not the expansion-order minimum. The order lets the employer cap the determining salary at the published average wage unless the contract uses a higher determining salary. The 2026 average-wage cap figure used here is the NIS 13,769 amount published on the Kol Zchut page as of 2026."
+  },
+  "hishtalmut": {
+    "employerRate": 0.075,
+    "employeeRate": 0.025,
+    "mandatory": false,
+    "sourceName": "Common study-fund arrangement (not a universal statutory minimum)",
+    "sourceUrl": "https://www.kolzchut.org.il/he/%D7%A7%D7%A8%D7%9F_%D7%94%D7%A9%D7%AA%D7%9C%D7%9E%D7%95%D7%AA",
+    "notes": "Keren hishtalmut is customary in many professional roles and some collective agreements. It is not treated as a universal mandatory cost in this engine unless the user turns it on."
+  },
+  "havraa": {
+    "privateSectorDayRateIls": 418,
+    "pendingPrivateSectorDayRateIls": 451.5,
+    "usingPendingRate": false,
+    "daysByCompletedYears": [
+      { "minYears": 1, "maxYears": 1, "days": 5 },
+      { "minYears": 2, "maxYears": 3, "days": 6 },
+      { "minYears": 4, "maxYears": 10, "days": 7 },
+      { "minYears": 11, "maxYears": 15, "days": 8 },
+      { "minYears": 16, "maxYears": 19, "days": 9 },
+      { "minYears": 20, "maxYears": 99, "days": 10 }
+    ],
+    "sourceName": "Kol Zchut — convalescence pay (dmei havra'a)",
+    "sourceUrl": "https://www.kolzchut.org.il/he/%D7%93%D7%9E%D7%99_%D7%94%D7%91%D7%A8%D7%90%D7%94",
+    "notes": "Private-sector day rate in force on the cited page is NIS 418. A 451.5 rate has been agreed but Kol Zchut states the expansion order had not yet been signed. Entitlement starts after one completed year. This engine amortizes the annual cash amount across 12 months as a planning figure, not as a monthly payroll statute."
+  },
+  "minimumWage": {
+    "monthlyIls": 6443.85,
+    "hourly182Ils": 35.4,
+    "effectiveFrom": "2026-04-01",
+    "sourceName": "National Insurance Institute — minimum wage table",
+    "sourceUrl": "https://www.btl.gov.il/Mediniyut/GeneralData/Pages/%D7%A9%D7%9B%D7%A8%20%D7%9E%D7%99%D7%A0%D7%99%D7%9E%D7%95%D7%9D.aspx",
+    "notes": "Monthly adult minimum wage from 1 April 2026. Used only as a warning threshold, not as a substitute for the user's salary input."
+  },
+  "disclaimer": "Informational estimate from published rates. Not accounting, legal, payroll, or tax advice. Not affiliated with the National Insurance Institute, the Israel Tax Authority, or the Ministry of Labor. Verify with a licensed accountant or payroll bureau before relying on any figure."
+}
+
+  </script>
+  <script src="src/offer.js"></script>
+  <script src="src/employerCost.js"></script>
+  <script src="src/briefing.js"></script>
+  <script src="src/paddleConfig.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@
   "description": "CostToHire IL — instant Israel employer-cost calculator and dated briefing.",
   "scripts": {
     "test": "node --test test/*.test.js",
+    "seo": "node scripts/build-seo-pages.js",
     "calculate": "node src/cli.js calculate",
     "briefing": "node src/cli.js briefing",
     "offer": "node src/cli.js offer"

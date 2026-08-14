@@ -12,46 +12,101 @@ Do not put passwords, government identifiers, identity documents, payment detail
 | Waiting | The agent must first produce a named input, or a later commercial trigger. |
 | Complete | The owner confirmed completion and any necessary non-secret result was recorded. |
 
-## Required tasks
+## Current owner action
 
-### 1. Open the Israeli tax files
+Do **Step 1** this afternoon. Do **Step 2** this week. Acquisition pages and community drafts are already built; they do not wait on you.
+
+---
+
+## Step 1 — Verify live Paddle checkout
 
 - **Status:** Open
-- **Needed by:** Before accepting the first paid briefing.
-- **Owner action:** Confirm with an accountant whether this information product is eligible for Osek Patur. Open the VAT and income-tax files, and check National Insurance registration for a self-employed activity. Do not treat this file as tax advice.
-- **Return to the agent:** Non-secret classification (Patur / Murshe), effective date, whether VAT is charged, and allowed receipt types.
-- **Blocking effect:** Does not block the public calculator or sample briefing. Blocks keeping paid revenue.
+- **Needed by:** Before sending traffic or taking a real card.
+- **Time:** about 10 minutes.
+- **Why you:** only you can change Paddle Checkout settings and website approval.
 
-### 2. Create the merchant-of-record account
+### Do this
 
-- **Status:** Complete
-- **Owner action:** Live Paddle account is connected. Client-side token and price `pri_01kzzgz4k6v40cseed86rhs3pr` are on the site. Catalog charge is USD.
-- **Return to the agent:** Paddle live token and price ID received. No secrets stored beyond the publishable client token.
-- **Blocking effect:** None for opening checkout. If Paddle shows a domain error, approve `cost.vinesautomation.com` under Checkout → Website approval and set it as the default payment link.
+1. Open the live site: https://cost.vinesautomation.com/
+2. Enter any salary (the default is fine) and click **Pay and download the briefing**.
+3. **If the Paddle overlay opens:** Step 1 is done. Close the overlay. Do **not** pay with a real card unless you want a live test sale.
+4. **If you see an error or nothing happens:** stay in the **live** Paddle dashboard (not Sandbox) and:
+   1. Go to **Checkout → Checkout settings → Default payment link**.
+   2. Set it to `https://cost.vinesautomation.com` and save.
+   3. Go to **Checkout → Website approval**.
+   4. Add `cost.vinesautomation.com` if it is missing.
+   5. Wait until the status is **Approved**.
+   6. Repeat step 2 on the live site.
+5. Open **Catalog → Products** → the briefing product → **Prices**.
+   - Confirm the live price is about **USD 40** if you still want this to match a ₪149 product.
+   - If it is **USD 149**, change it to about **USD 40** (₪149). Tell the agent the new amount only — not keys.
+
+### Return to the agent
+
+One line, no secrets:
+
+- `overlay: opened` or `overlay: error` (paste the on-screen words, not a screenshot of keys)
+- `website approval: approved / pending`
+- `paddle price: $__`
+
+### Blocking effect
+
+Blocks confidence that a stranger can pay. Does not block the calculator, SEO pages, or preview briefing.
+
+---
+
+## Step 2 — Open the Israeli tax files
+
+- **Status:** Open
+- **Needed by:** Before treating the first Paddle payout as spendable income.
+- **Why you:** only the living owner can open VAT and income-tax files. This file is not tax advice.
+
+### Do this
+
+1. Book a short session with an Israeli accountant (the ₪400 reserve in `DESIGN.md` is for this).
+2. Show them: this is an information product sold through **Paddle** (merchant of record), priced in **USD**, site at `cost.vinesautomation.com`.
+3. Ask them to confirm whether the activity can start as **Osek Patur** (turnover under the current ~₪120,000–122,833 ceiling) or must be **Osek Murshe**.
+4. Open the files they specify:
+   - VAT (Ma’am) — Patur or Murshe
+   - Income tax
+   - National Insurance as a self-employed activity, if they say it is required
+5. Do **not** put your tax ID, address, or login codes in this repository.
+
+### Return to the agent
+
+Non-secret only:
+
+- Classification: `Patur` or `Murshe`
+- Effective date
+- Whether you charge VAT on the public price
+- Allowed receipt type (Paddle invoice only / Israeli kabala / other)
+
+### Blocking effect
+
+Does not block building, SEO, or Paddle taking a card. Blocks treating received money as cleared business income and blocks filling the public seller block on the terms page (Step 4).
+
+---
+
+## Other tasks
 
 ### 3. Custom domain
 
 - **Status:** Complete
-- **Owner action:** Pointed the existing Cloudflare domain at the product. Public hostname is `cost.vinesautomation.com`. No new domain was purchased.
-- **Return to the agent:** DNS CNAME for `cost` → `giladshaul.github.io` is live.
+- **Owner action:** Pointed the existing Cloudflare domain at the product. Public hostname is `cost.vinesautomation.com`.
 - **Blocking effect:** None.
 
 ### 4. Legal seller details for the public terms
 
 - **Status:** Waiting
-- **Trigger:** Task 1 produces a classification and Task 2 is in progress.
-- **Owner action:** Provide the legally required seller name, business identifier, service address, and a business contact route through a channel that is appropriate for identity information. Do not commit those identifiers to git.
-- **Return to the agent:** Confirmation that the public terms may name the business; send the exact public-facing wording only.
-- **Blocking effect:** Blocks filling the production seller block on the terms page. Does not block the calculator.
+- **Trigger:** Step 2 produces a classification.
+- **Owner action:** Provide the public-facing seller name, business identifier, service address, and a business contact route through a channel that is appropriate for identity information. Do not commit those identifiers to git.
+- **Return to the agent:** The exact wording that may appear on the terms page.
+- **Blocking effect:** Blocks the production seller block on the terms page. Does not block the calculator or checkout overlay.
 
 ### 5. Reconcile tax treatment as money arrives
 
 - **Status:** Waiting
 - **Trigger:** First paid sale, each month-end, and when forecast annual gross reaches 75% of the current Osek Patur ceiling.
-- **Owner action:** Reconcile receipts, fees, refunds, and FX. Confirm with an accountant before switching to Osek Murshe or changing VAT treatment. Plan the Murshe / company step before any ILS 1,500 / month firm contract.
+- **Owner action:** Reconcile Paddle receipts, fees, refunds, and FX with the accountant. Confirm before switching to Osek Murshe.
 - **Return to the agent:** Non-secret monthly totals and the confirmed status.
 - **Blocking effect:** Blocks continued selling only if the accountant says the current registration is no longer valid.
-
-## Current owner action
-
-**Task 1** is still open (Israeli tax files). Checkout can take a card through Paddle. Keeping the revenue still needs the tax classification.

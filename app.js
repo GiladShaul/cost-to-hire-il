@@ -41,31 +41,41 @@
     return "לא ניתן לחשב את העלות. בדקו את הנתונים.";
   }
 
+  function setText(id, value) {
+    const node = $(id);
+    if (node) node.textContent = value;
+  }
+
   function renderError(message) {
-    $("calc-error").hidden = !message;
-    $("calc-error").textContent = message || "";
+    const err = $("calc-error");
+    if (err) {
+      err.hidden = !message;
+      err.textContent = message || "";
+    }
     if (message) {
-      $("total-stamp").textContent = "—";
-      $("result-lines").innerHTML = "";
+      setText("total-stamp", "—");
+      if ($("result-lines")) $("result-lines").innerHTML = "";
     }
   }
 
   function render(result, rates) {
     renderError("");
-    $("total-stamp").textContent = ils(result.totalEmployerCostIls);
-    $("result-oncost").textContent = ils(result.oncostIls);
-    $("result-annual").textContent = ils(result.annualEmployerCostIls);
-    $("result-load").textContent = (result.loadRatio * 100).toFixed(1) + "%";
-    $("rates-as-of").textContent = rates.asOf;
-    $("result-lines").innerHTML = result.lines
-      .map(function (line) {
-        const label = document.documentElement.lang === "he" ? line.labelHe : line.labelEn;
-        return "<div class=\"stub-line\"><span>" + escapeHtml(label) + "</span><span>" + ils(line.amountIls) + "</span></div>";
-      })
-      .join("");
-    $("min-wage-note").hidden = !result.belowMinimumWage;
-    $("download-briefing").disabled = false;
-    $("stub").classList.add("is-printed");
+    setText("total-stamp", ils(result.totalEmployerCostIls));
+    setText("result-oncost", ils(result.oncostIls));
+    setText("result-annual", ils(result.annualEmployerCostIls));
+    setText("result-load", (result.loadRatio * 100).toFixed(1) + "%");
+    setText("rates-as-of", rates.asOf);
+    if ($("result-lines")) {
+      $("result-lines").innerHTML = result.lines
+        .map(function (line) {
+          const label = document.documentElement.lang === "he" ? line.labelHe : line.labelEn;
+          return "<div class=\"stub-line\"><span>" + escapeHtml(label) + "</span><span>" + ils(line.amountIls) + "</span></div>";
+        })
+        .join("");
+    }
+    if ($("min-wage-note")) $("min-wage-note").hidden = !result.belowMinimumWage;
+    if ($("download-briefing")) $("download-briefing").disabled = false;
+    if ($("stub")) $("stub").classList.add("is-printed");
   }
 
   function escapeHtml(value) {
@@ -149,7 +159,7 @@
 
   function initPaddle() {
     const buy = $("buy");
-    if (!PaddleConfig.isReady()) return;
+    if (!buy || typeof PaddleConfig === "undefined" || !PaddleConfig.isReady()) return;
     const ready = Offer.checkoutStatus(true);
     buy.classList.remove("blocked");
     buy.setAttribute("data-en", ready.labelEn);
@@ -225,17 +235,21 @@
       $("file-note").hidden = false;
     }
     ["gross", "seniority", "travel", "role", "severance", "pension-base", "hishtalmut", "havraa"].forEach(function (id) {
-      $(id).addEventListener("input", calculate);
-      $(id).addEventListener("change", calculate);
+      const node = $(id);
+      if (!node) return;
+      node.addEventListener("input", calculate);
+      node.addEventListener("change", calculate);
     });
-    $("download-briefing").addEventListener("click", function (event) {
-      event.preventDefault();
-      if (calculate()) {
-        downloadBriefing(true);
-      }
-    });
-    $("lang-en").addEventListener("click", function () { setLang("en"); });
-    $("lang-he").addEventListener("click", function () { setLang("he"); });
+    if ($("download-briefing")) {
+      $("download-briefing").addEventListener("click", function (event) {
+        event.preventDefault();
+        if (calculate()) {
+          downloadBriefing(true);
+        }
+      });
+    }
+    if ($("lang-en")) $("lang-en").addEventListener("click", function () { setLang("en"); });
+    if ($("lang-he")) $("lang-he").addEventListener("click", function () { setLang("he"); });
     const params = new URLSearchParams(location.search);
     if (params.get("gross")) $("gross").value = params.get("gross");
     if (params.get("role")) $("role").value = params.get("role");

@@ -38,6 +38,11 @@ body {
 
 a { color: var(--carbon); }
 
+.brand a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .wrap {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
