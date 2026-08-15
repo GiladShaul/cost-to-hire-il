@@ -192,7 +192,7 @@
       (locale === "he" ? "rtl" : "ltr") +
       "\"><head><meta charset=\"utf-8\"><title>" +
       escapeHtml(title) +
-      "</title><style>body{font-family:\"IBM Plex Sans Hebrew\",\"Segoe UI\",sans-serif;max-width:760px;margin:32px auto;padding:0 16px;color:#16324F}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border-bottom:1px solid #c5d4c8;padding:8px;text-align:inherit}tfoot td{font-weight:700}small,footer{color:#4d5d68}h1{font-size:1.6rem}.stamp{display:inline-block;border:3px solid #B4232C;color:#B4232C;padding:8px 14px;font-family:\"Segoe UI\",sans-serif;font-size:1.4rem}.banner{background:#F2E27A;padding:8px 12px;margin:12px 0}</style></head><body>" +
+      "</title><style>body{font-family:Heebo,sans-serif;max-width:794px;margin:32px auto;padding:48px 56px;color:#1B2A26;background:#fff}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border-bottom:1px solid #DED4BE;padding:7px 0;text-align:inherit}tfoot td{font-weight:700}small,footer{color:#8A9389;font-size:10.5px}h1{font-size:26px;font-weight:800;color:#132E2B;letter-spacing:-0.01em}.stamp{font:700 21px \"Fira Mono\",monospace;color:#0F3B3D}.banner{background:#F4EFE4;border:1px solid #DED4BE;padding:8px 12px;margin:12px 0}</style></head><body>" +
       (sample ? "<p class=\"banner\">" + escapeHtml(labels.sample) + "</p>" : "") +
       "<p>CostToHire IL · " +
       escapeHtml(offer.sku) +

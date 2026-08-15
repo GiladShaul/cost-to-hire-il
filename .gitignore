@@ -2,3 +2,4 @@ node_modules/
 *.log
 .DS_Store
 briefing.html
+_ui_redesign/

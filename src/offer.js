@@ -83,7 +83,7 @@
       return {
         state: "ready",
         labelEn: "Pay and download the briefing",
-        labelHe: "שלמו והורידו את התדריך",
+        labelHe: "רכישה והורדת התדריך",
       };
     }
     return {

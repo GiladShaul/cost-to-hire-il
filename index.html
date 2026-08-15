@@ -1,126 +1,171 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-en="CostToHire IL — Israel employer-cost briefing" data-he="CostToHire IL — תדריך עלות מעסיק בישראל">CostToHire IL — Israel employer-cost briefing</title>
-  <meta name="description" data-en="See the true shekel cost of hiring an employee in Israel. Free 2026 calculator. Dated briefing ₪149." data-he="העלות השקלית האמיתית של העסקת עובד בישראל. מחשבון חינם ל־2026. תדריך מתוארך ב־₪149." content="See the true shekel cost of hiring an employee in Israel. Free 2026 calculator. Dated briefing ₪149.">
+  <title data-en="CostToHire IL — Israel employer-cost briefing" data-he="CostToHire IL — תדריך עלות מעסיק בישראל">CostToHire IL — תדריך עלות מעסיק בישראל</title>
+  <meta name="description" data-en="See the true shekel cost of hiring an employee in Israel. Free 2026 calculator. Dated briefing ₪149." data-he="העלות השקלית האמיתית של העסקת עובד בישראל. מחשבון חינם ל־2026. תדריך מתוארך ב־₪149." content="העלות השקלית האמיתית של העסקת עובד בישראל. מחשבון חינם ל־2026. תדריך מתוארך ב־₪149.">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Hebrew:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
-      <div class="brand">CostToHire IL<strong data-en="The shekel cost of a hire" data-he="העלות השקלית של העסקה">The shekel cost of a hire</strong></div>
-      <div class="lang">
-        <button type="button" id="lang-en" aria-pressed="true">EN</button>
-        <button type="button" id="lang-he" aria-pressed="false">עברית</button>
+    <header class="site-header">
+      <div class="brand-lock">
+        <div class="mark" aria-hidden="true">₪</div>
+        <div class="brand-name">CostToHire IL</div>
+        <div class="brand-tag" data-en="Employer cost · Israel" data-he="עלות מעסיק · ישראל">עלות מעסיק · ישראל</div>
+      </div>
+      <div class="nav-row">
+        <nav class="nav-links">
+          <a href="#calc-form" data-en="Calculator" data-he="מחשבון">מחשבון</a>
+          <a href="#offer" data-en="The briefing" data-he="התדריך">התדריך</a>
+          <a href="#sources" data-en="Sources" data-he="מקורות">מקורות</a>
+          <a href="#guides" data-en="Guides" data-he="מדריכים">מדריכים</a>
+        </nav>
+        <div class="lang">
+          <button type="button" id="lang-he" aria-pressed="true">עברית</button>
+          <button type="button" id="lang-en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </header>
 
-    <p id="file-note" class="file-note" hidden data-en="This page was opened as a file. The calculator still runs. For a local server use: npx serve ." data-he="הדף נפתח כקובץ. המחשבון עדיין רץ. לשרת מקומי: npx serve .">This page was opened as a file. The calculator still runs. For a local server use: npx serve .</p>
+    <p id="file-note" class="file-note" hidden data-en="This page was opened as a file. The calculator still runs. For a local server use: npx serve ." data-he="הדף נפתח כקובץ. המחשבון עדיין רץ. לשרת מקומי: npx serve .">הדף נפתח כקובץ. המחשבון עדיין רץ. לשרת מקומי: npx serve .</p>
 
-    <section class="hero">
-      <div>
-        <h1 data-en="Know the employer cost before you make the offer." data-he="דעו את עלות המעסיק לפני שאתם נותנים הצעה.">Know the employer cost before you make the offer.</h1>
-        <p class="lede" data-en="A bilingual calculator for foreign companies and Israeli operators hiring in Israel. Published 2026 national-insurance bands, pension, and severance — then a dated briefing you can hand a CFO." data-he="מחשבון דו־לשוני לחברות זרות ולעסקים ישראליים שמגייסים בישראל. מדרגות ביטוח לאומי, פנסיה ופיצויים לשנת 2026 — ואז תדריך מתוארך שאפשר להעביר לסמנכ״ל הכספים.">A bilingual calculator for foreign companies and Israeli operators hiring in Israel. Published 2026 national-insurance bands, pension, and severance — then a dated briefing you can hand a CFO.</p>
-        <div class="price-pill">
-          <span data-en="Israel employer-cost briefing" data-he="תדריך עלות מעסיק בישראל">Israel employer-cost briefing</span>
-          <strong>₪149</strong>
-        </div>
-        <p class="fine" data-en="Informational estimate. Not accounting, legal, payroll, or tax advice." data-he="הערכה מידעית בלבד. זה אינו ייעוץ חשבונאי, משפטי, שכר או מס.">Informational estimate. Not accounting, legal, payroll, or tax advice.</p>
+    <section class="hero-copy">
+      <div class="kicker" data-en="Employer cost · Israel · rates 2026.1" data-he="עלות מעסיק · ישראל · גרסת שיעורים 2026.1">עלות מעסיק · ישראל · גרסת שיעורים 2026.1</div>
+      <h1 data-en="What will your next employee actually cost?" data-he="כמה באמת עולה העובד הבא שלכם?">כמה באמת עולה העובד הבא שלכם?</h1>
+      <p class="lede" data-en="Gross is only the start. The calculator adds national insurance, pension, severance and convalescence from published 2026 rates — the full employer cost before you close an offer." data-he="ברוטו זה רק ההתחלה. המחשבון מוסיף ביטוח לאומי, פנסיה, פיצויים ודמי הבראה לפי השיעורים המפורסמים ל־2026 — ומראה את העלות המלאה לפני שסוגרים הצעה.">ברוטו זה רק ההתחלה. המחשבון מוסיף ביטוח לאומי, פנסיה, פיצויים ודמי הבראה לפי השיעורים המפורסמים ל־2026 — ומראה את העלות המלאה לפני שסוגרים הצעה.</p>
+      <div class="trust-row">
+        <span data-en="Source and date on every figure" data-he="מקור ותאריך על כל מספר">מקור ותאריך על כל מספר</span>
+        <span data-en="Updated to 2026 rates" data-he="מעודכן לשיעורי 2026">מעודכן לשיעורי 2026</span>
+        <span data-en="Runs in the browser — nothing is sent" data-he="רץ בדפדפן — בלי לשלוח נתונים">רץ בדפדפן — בלי לשלוח נתונים</span>
       </div>
+    </section>
 
+    <section class="calc-grid">
       <form class="form-card" id="calc-form">
+        <div class="form-title" data-en="Role inputs" data-he="נתוני המשרה">נתוני המשרה</div>
         <label>
-          <span data-en="Monthly gross salary (ILS)" data-he="שכר ברוטו חודשי (₪)">Monthly gross salary (ILS)</span>
+          <span data-en="Monthly gross salary (ILS)" data-he="שכר ברוטו חודשי (₪)">שכר ברוטו חודשי (₪)</span>
           <input id="gross" name="gross" type="number" min="1" step="1" value="18000" required>
         </label>
-        <label>
-          <span data-en="Role label (optional)" data-he="תפקיד (רשות)">Role label (optional)</span>
-          <input id="role" name="role" type="text" value="First Israeli hire" data-en-value="First Israeli hire" data-he-value="העובד הישראלי הראשון">
-        </label>
-        <label>
-          <span data-en="Completed years of seniority" data-he="שנות ותק שהושלמו">Completed years of seniority</span>
-          <input id="seniority" name="seniority" type="number" min="0" step="1" value="0">
-        </label>
-        <label>
-          <span data-en="Monthly travel allowance (ILS)" data-he="נסיעות חודשיות (₪)">Monthly travel allowance (ILS)</span>
-          <input id="travel" name="travel" type="number" min="0" step="1" value="0">
-        </label>
-        <label>
-          <span data-en="Severance setting" data-he="הגדרת פיצויים">Severance setting</span>
-          <select id="severance">
-            <option value="section14" data-en="8.33% / Section 14" data-he="8.33% / סעיף 14">8.33% / Section 14</option>
-            <option value="mandatory" data-en="6% expansion-order minimum" data-he="6% מינימום צו הרחבה">6% expansion-order minimum</option>
-          </select>
-        </label>
-        <label>
-          <span data-en="Pensionable salary" data-he="שכר קובע לפנסיה">Pensionable salary</span>
-          <select id="pension-base">
-            <option value="gross" data-en="Use full gross" data-he="לפי מלוא הברוטו">Use full gross</option>
-            <option value="average-wage-cap" data-en="Cap at published average wage" data-he="תקרה לפי השכר הממוצע במשק">Cap at published average wage</option>
-          </select>
-        </label>
-        <div class="checks">
-          <label><input id="havraa" type="checkbox" checked> <span data-en="Include convalescence planning" data-he="כלול דמי הבראה לתכנון">Include convalescence planning</span></label>
-          <label><input id="hishtalmut" type="checkbox"> <span data-en="Include study fund 7.5%" data-he="כלול קרן השתלמות 7.5%">Include study fund 7.5%</span></label>
+        <div class="field-grid">
+          <label>
+            <span data-en="Role label (optional)" data-he="תפקיד (רשות)">תפקיד (רשות)</span>
+            <input id="role" name="role" type="text" value="העובד הישראלי הראשון" data-en-value="First Israeli hire" data-he-value="העובד הישראלי הראשון">
+          </label>
+          <label>
+            <span data-en="Completed years of seniority" data-he="שנות ותק שהושלמו">שנות ותק שהושלמו</span>
+            <input id="seniority" name="seniority" type="number" min="0" step="1" value="0">
+          </label>
+          <label>
+            <span data-en="Monthly travel allowance (ILS)" data-he="נסיעות חודשיות (₪)">נסיעות חודשיות (₪)</span>
+            <input id="travel" name="travel" type="number" min="0" step="1" value="0">
+          </label>
+          <label>
+            <span data-en="Severance setting" data-he="הגדרת פיצויים">הגדרת פיצויים</span>
+            <select id="severance">
+              <option value="section14" data-en="8.33% / Section 14" data-he="8.33% / סעיף 14">8.33% / סעיף 14</option>
+              <option value="mandatory" data-en="6% expansion-order minimum" data-he="6% מינימום צו הרחבה">6% מינימום צו הרחבה</option>
+            </select>
+          </label>
+          <label>
+            <span data-en="Pensionable salary" data-he="שכר קובע לפנסיה">שכר קובע לפנסיה</span>
+            <select id="pension-base">
+              <option value="gross" data-en="Use full gross" data-he="מלוא הברוטו">מלוא הברוטו</option>
+              <option value="average-wage-cap" data-en="Cap at published average wage" data-he="תקרה לפי השכר הממוצע במשק">תקרה לפי השכר הממוצע במשק</option>
+            </select>
+          </label>
+          <div class="checks">
+            <label><input id="havraa" type="checkbox" checked> <span data-en="Include convalescence planning" data-he="דמי הבראה לתכנון">דמי הבראה לתכנון</span></label>
+            <label><input id="hishtalmut" type="checkbox"> <span data-en="Include study fund 7.5%" data-he="קרן השתלמות 7.5%">קרן השתלמות 7.5%</span></label>
+          </div>
         </div>
         <p id="calc-error" class="error" hidden></p>
-        <p id="min-wage-note" class="note" hidden data-en="This gross is below the April 2026 adult monthly minimum wage of ₪6,443.85." data-he="הברוטו נמוך משכר המינימום החודשי למבוגר מאפריל 2026, ₪6,443.85.">This gross is below the April 2026 adult monthly minimum wage of ₪6,443.85.</p>
+        <p id="min-wage-note" class="note" hidden data-en="This gross is below the April 2026 adult monthly minimum wage of ₪6,443.85." data-he="הברוטו נמוך משכר המינימום החודשי למבוגר מאפריל 2026, ₪6,443.85.">הברוטו נמוך משכר המינימום החודשי למבוגר מאפריל 2026, ₪6,443.85.</p>
+        <p class="fine-form" data-en="Informational estimate. Not accounting, legal, payroll, or tax advice." data-he="הערכה מידעית בלבד. זה אינו ייעוץ חשבונאי, משפטי, שכר או מס.">הערכה מידעית בלבד. זה אינו ייעוץ חשבונאי, משפטי, שכר או מס.</p>
       </form>
-    </section>
 
-    <section class="hero">
       <div class="stub" id="stub">
-        <div class="stub-kicker" data-en="Employer stub · rates as of" data-he="תלוש מעסיק · שיעורים נכון ל">Employer stub · rates as of</div>
-        <div id="rates-as-of">2026-01-01</div>
-        <div class="stamp" id="total-stamp">—</div>
-        <div class="stub-meta"><span data-en="On-cost" data-he="עלות נלווית">On-cost</span><span id="result-oncost">—</span></div>
-        <div class="stub-meta"><span data-en="Annual" data-he="שנתי">Annual</span><span id="result-annual">—</span></div>
-        <div class="stub-meta"><span data-en="Load" data-he="שיעור העמסה">Load</span><span id="result-load">—</span></div>
-        <div id="result-lines"></div>
-      </div>
-      <div class="offer">
-        <h2 data-en="What ₪149 buys" data-he="מה מקבלים ב-₪149">What ₪149 buys</h2>
-        <ul>
-          <li data-en="A dated, source-cited HTML briefing you can print to PDF" data-he="תדריך מתוארך עם מקורות, מוכן להדפסה לקובץ PDF">A dated, source-cited HTML briefing you can print to PDF</li>
-          <li data-en="Line-item employer cost using 2026 published rates" data-he="פירוט עלות מעסיק לפי שיעורים מפורסמים ל־2026">Line-item employer cost using 2026 published rates</li>
-          <li data-en="12-month cash table and first-year versus steady-state view" data-he="טבלת 12 חודשים והשוואת שנה ראשונה מול מצב יציב">12-month cash table and first-year versus steady-state view</li>
-          <li data-en="Side-by-side Section 14 versus expansion-order minimum" data-he="השוואה בין סעיף 14 לבין מינימום צו ההרחבה">Side-by-side Section 14 versus expansion-order minimum</li>
-        </ul>
-        <div class="actions">
-          <button type="button" id="download-briefing" class="secondary" data-en="Preview the briefing format" data-he="הצגת פורמט התדריך">Preview the briefing format</button>
-          <a class="buy" id="buy" href="#buy" data-en="Pay and download the briefing" data-he="שלמו והורידו את התדריך">Pay and download the briefing</a>
+        <div class="stub-head">
+          <div class="stub-kicker" data-en="Live estimate · not saved" data-he="אומדן חי · לא נשמר">אומדן חי · לא נשמר</div>
+          <div id="rates-as-of">2026-01-01</div>
         </div>
-        <p class="fine" id="owner-checkout" data-en="Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically." data-he="התשלום בכרטיס עובר דרך Paddle, שהיא סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום יורד התדריך בלי סימן טיוטה.">Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically.</p>
-        <p class="fine" data-en="Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month." data-he="בהמשך: מקצועי ₪99 לחודש · סוכנות ₪390 לחודש · משרד וממשק ₪1,500 לחודש.">Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month.</p>
+        <div class="stub-body">
+          <div class="total-label" data-en="Total monthly employer cost" data-he="סה״כ עלות מעסיק לחודש">סה״כ עלות מעסיק לחודש</div>
+          <div class="stamp" id="total-stamp">—</div>
+          <div class="metrics">
+            <div><div class="lbl" data-en="Gross" data-he="ברוטו">ברוטו</div><div class="val" id="result-gross">—</div></div>
+            <div><div class="lbl" data-en="On-cost" data-he="עלות נלווית">עלות נלווית</div><div class="val" id="result-oncost">—</div></div>
+            <div><div class="lbl" data-en="Annual" data-he="שנתי">שנתי</div><div class="val" id="result-annual">—</div></div>
+            <div><div class="lbl" data-en="Load" data-he="שיעור העמסה">שיעור העמסה</div><div class="val" id="result-load">—</div></div>
+          </div>
+        </div>
+        <div class="stub-lines">
+          <div id="result-lines"></div>
+          <div class="rate-foot" data-en="Reduced band to ₪7,703 · ceiling ₪51,910 · pension order 6.5%" data-he="מדרגה מופחתת עד ₪7,703 · תקרה ₪51,910 · צו הרחבה לפנסיה 6.5%">מדרגה מופחתת עד ₪7,703 · תקרה ₪51,910 · צו הרחבה לפנסיה 6.5%</div>
+        </div>
       </div>
     </section>
 
-    <section class="legal">
-      <h2 data-en="Guides" data-he="מדריכים">Guides</h2>
-      <ul>
-        <li><a href="./hire-in-israel-2026.html">Cost to hire an employee in Israel (2026)</a></li>
-        <li><a href="./employer-cost-software-engineer-israel.html">Software engineer employer cost</a></li>
-        <li><a href="./employer-cost-first-hire-israel.html">First Israeli hire</a></li>
-        <li><a href="./alut-maasik-2026.html">עלות מעסיק 2026</a></li>
-      </ul>
+    <section class="offer-band" id="offer">
+      <div>
+        <div class="offer-kicker" data-en="Paid product" data-he="המוצר בתשלום">המוצר בתשלום</div>
+        <h2 data-en="The full briefing — a dated document you can hand a CFO" data-he="התדריך המלא — מסמך מתוארך שאפשר להגיש לרו״ח או לסמנכ״ל הכספים">התדריך המלא — מסמך מתוארך שאפשר להגיש לרו״ח או לסמנכ״ל הכספים</h2>
+        <ul class="offer-list">
+          <li data-en="Full employer-cost line items from 2026 rates, with a source on every row" data-he="פירוט מלא של עלות המעסיק לפי שיעורי 2026, עם מקור לכל סעיף">פירוט מלא של עלות המעסיק לפי שיעורי 2026, עם מקור לכל סעיף</li>
+          <li data-en="12-month cash table and first-year versus steady-state" data-he="טבלת מזומנים ל־12 חודשים ושנה ראשונה מול מצב יציב">טבלת מזומנים ל־12 חודשים ושנה ראשונה מול מצב יציב</li>
+          <li data-en="Section 14 versus expansion-order minimum" data-he="השוואת סעיף 14 מול מינימום צו ההרחבה">השוואת סעיף 14 מול מינימום צו ההרחבה</li>
+          <li data-en="Printable HTML/PDF, no sample watermark" data-he="קובץ HTML מוכן להדפסה כ־PDF, בלי סימן טיוטה">קובץ HTML מוכן להדפסה כ־PDF, בלי סימן טיוטה</li>
+        </ul>
+      </div>
+      <div class="offer-buy">
+        <div class="price-row">
+          <strong>₪149</strong>
+          <span data-en="Israel employer-cost briefing · one-time · instant download" data-he="תשלום חד־פעמי · הורדה מיידית">תשלום חד־פעמי · הורדה מיידית</span>
+        </div>
+        <div class="actions">
+          <a class="buy" id="buy" href="#buy" data-en="Pay and download the briefing" data-he="רכישה והורדת התדריך">רכישה והורדת התדריך</a>
+          <button type="button" id="download-briefing" class="secondary" data-en="Preview the briefing format" data-he="תצוגה מקדימה של הפורמט">תצוגה מקדימה של הפורמט</button>
+        </div>
+        <p id="owner-checkout" data-en="Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically." data-he="הסליקה באמצעות Paddle, סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום התדריך יורד אוטומטית.">הסליקה באמצעות Paddle, סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום התדריך יורד אוטומטית.</p>
+        <p id="paddle-status" class="error" hidden></p>
+        <p class="buy-note" data-en="Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month." data-he="בהמשך: Pro ‏₪99/חודש · סוכנות ‏₪390/חודש · משרד / API ‏₪1,500/חודש">בהמשך: Pro ‏₪99/חודש · סוכנות ‏₪390/חודש · משרד / API ‏₪1,500/חודש</p>
+      </div>
     </section>
 
-    <section class="legal">
-      <h2 data-en="Sources and limits" data-he="מקורות וגבולות">Sources and limits</h2>
-      <ul>
-        <li><a href="https://www.btl.gov.il/English%20Homepage/Insurance/Ratesandamount/Pages/forSalaried.aspx" data-en-href="https://www.btl.gov.il/English%20Homepage/Insurance/Ratesandamount/Pages/forSalaried.aspx" data-he-href="https://www.btl.gov.il/Insurance/Rates/Pages/%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D%20%D7%A9%D7%9B%D7%99%D7%A8%D7%99%D7%9D.aspx" data-en="National Insurance salaried rates (2026 bands ₪7,703 / ₪51,910)" data-he="שיעורי ביטוח לאומי לשכירים (מדרגות 2026 ₪7,703 / ₪51,910)">National Insurance salaried rates (2026 bands ₪7,703 / ₪51,910)</a></li>
-        <li><a href="https://www.kolzchut.org.il/he/%D7%97%D7%95%D7%91%D7%AA_%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" data-en="Mandatory pension expansion order (6.5% / 6% / 6%)" data-he="צו הרחבה לפנסיה חובה (6.5% / 6% / 6%)">Mandatory pension expansion order (6.5% / 6% / 6%)</a></li>
-        <li><a href="https://www.kolzchut.org.il/he/%D7%93%D7%9E%D7%99_%D7%94%D7%91%D7%A8%D7%90%D7%94" data-en="Convalescence pay day rate" data-he="תעריף יום לדמי הבראה">Convalescence pay day rate</a></li>
-      </ul>
-      <p data-en="CostToHire IL is a standalone information product operated from Israel. It does not file, submit, or represent anyone before an authority, and it does not touch payroll funds." data-he="CostToHire IL הוא מוצר מידע עצמאי שמופעל מישראל. הוא אינו מגיש דיווחים לרשות כלשהי ואינו נוגע בכספי שכר.">CostToHire IL is a standalone information product operated from Israel. It does not file, submit, or represent anyone before an authority, and it does not touch payroll funds.</p>
-      <p id="paddle-status" class="error" hidden></p>
-      <p><a href="terms.html" data-en="Terms" data-he="תנאים">Terms</a> · <a href="privacy.html" data-en="Privacy" data-he="פרטיות">Privacy</a> · <a href="refund.html" data-en="Refunds" data-he="החזרים">Refunds</a></p>
+    <section class="lower">
+      <div id="sources">
+        <h2 data-en="Sources and limits" data-he="מקורות וגבולות">מקורות וגבולות</h2>
+        <ul>
+          <li><a href="https://www.btl.gov.il/English%20Homepage/Insurance/Ratesandamount/Pages/forSalaried.aspx" data-en-href="https://www.btl.gov.il/English%20Homepage/Insurance/Ratesandamount/Pages/forSalaried.aspx" data-he-href="https://www.btl.gov.il/Insurance/Rates/Pages/%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D%20%D7%A9%D7%9B%D7%99%D7%A8%D7%99%D7%9D.aspx" data-en="National Insurance salaried rates (2026 bands ₪7,703 / ₪51,910)" data-he="המוסד לביטוח לאומי — שיעורים לשכירים">המוסד לביטוח לאומי — שיעורים לשכירים</a></li>
+          <li><a href="https://www.kolzchut.org.il/he/%D7%97%D7%95%D7%91%D7%AA_%D7%91%D7%99%D7%98%D7%95%D7%97_%D7%A4%D7%A0%D7%A1%D7%99%D7%95%D7%A0%D7%99_%D7%9C%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D" data-en="Mandatory pension expansion order (6.5% / 6% / 6%)" data-he="כל זכות — חובת ביטוח פנסיוני">כל זכות — חובת ביטוח פנסיוני</a></li>
+          <li><a href="https://www.kolzchut.org.il/he/%D7%93%D7%9E%D7%99_%D7%94%D7%91%D7%A8%D7%90%D7%94" data-en="Convalescence pay day rate" data-he="כל זכות — דמי הבראה">כל זכות — דמי הבראה</a></li>
+        </ul>
+        <p class="fine-form" data-en="CostToHire IL is a standalone information product operated from Israel. It does not file, submit, or represent anyone before an authority, and it does not touch payroll funds. Not accounting, legal, payroll, or tax advice." data-he="CostToHire IL הוא מוצר מידע עצמאי המופעל מישראל. הוא אינו מגיש דיווחים לרשות כלשהי, אינו מייצג איש ואינו נוגע בכספי שכר. אמתו כל מספר מול רואה חשבון או משרד שכר לפני הסתמכות.">CostToHire IL הוא מוצר מידע עצמאי המופעל מישראל. הוא אינו מגיש דיווחים לרשות כלשהי, אינו מייצג איש ואינו נוגע בכספי שכר. אמתו כל מספר מול רואה חשבון או משרד שכר לפני הסתמכות.</p>
+      </div>
+      <div id="guides">
+        <h2 data-en="Guides" data-he="מדריכים">מדריכים</h2>
+        <ul>
+          <li><a href="./hire-in-israel-2026.html">Cost to hire in Israel — English guide</a></li>
+          <li><a href="./employer-cost-software-engineer-israel.html">עלות מעסיק — מהנדס תוכנה</a></li>
+          <li><a href="./employer-cost-first-hire-israel.html">העובד הישראלי הראשון</a></li>
+          <li><a href="./alut-maasik-2026.html">עלות העסקת עובד בישראל (2026)</a></li>
+        </ul>
+      </div>
     </section>
+
+    <footer class="site-footer">
+      <div>© 2026 CostToHire IL · <span data-en="Informational estimate — not advice" data-he="הערכה מידעית — לא ייעוץ">הערכה מידעית — לא ייעוץ</span></div>
+      <div>
+        <a href="terms.html" data-en="Terms" data-he="תנאים">תנאים</a>
+        <a href="privacy.html" data-en="Privacy" data-he="פרטיות">פרטיות</a>
+        <a href="refund.html" data-en="Refunds" data-he="החזרים">החזרים</a>
+      </div>
+    </footer>
   </div>
 
   <script type="application/json" id="rates-data">

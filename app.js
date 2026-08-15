@@ -61,6 +61,7 @@
   function render(result, rates) {
     renderError("");
     setText("total-stamp", ils(result.totalEmployerCostIls));
+    setText("result-gross", ils(result.grossIls));
     setText("result-oncost", ils(result.oncostIls));
     setText("result-annual", ils(result.annualEmployerCostIls));
     setText("result-load", (result.loadRatio * 100).toFixed(1) + "%");
@@ -276,10 +277,10 @@
       markPaid();
     }
     initPaddle();
-    if (params.get("lang") === "he") {
-      setLang("he");
+    if (params.get("lang") === "en") {
+      setLang("en");
     } else {
-      calculate();
+      setLang("he");
     }
     if (hasPaid() && calculate()) {
       downloadBriefing(false);

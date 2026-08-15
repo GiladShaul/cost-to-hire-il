@@ -64,7 +64,7 @@ describe("sellable offer surface", function () {
     assert.match(html, /data-he="הגדרת פיצויים"/);
     assert.match(html, /data-he="שכר קובע לפנסיה"/);
     assert.match(html, /data-he="8\.33% \/ סעיף 14"/);
-    assert.match(html, /data-he="לפי מלוא הברוטו"/);
+    assert.match(html, /data-he="מלוא הברוטו"/);
   });
 
   it("shows the ready Paddle checkout label on the customer page", function () {

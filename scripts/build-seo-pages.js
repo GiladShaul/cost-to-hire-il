@@ -52,17 +52,21 @@ function pageHtml(page, result) {
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
-      <div class="brand"><a href="./index.html">CostToHire IL</a><strong>${he ? "העלות השקלית של העסקה" : "The shekel cost of a hire"}</strong></div>
+    <header class="site-header">
+      <div class="brand-lock">
+        <div class="mark">₪</div>
+        <a class="brand-name" href="./index.html">CostToHire IL</a>
+        <div class="brand-tag">${he ? "עלות מעסיק · ישראל" : "Employer cost · Israel"}</div>
+      </div>
     </header>
-    <article class="legal">
+    <article class="legal-page">
       <h1>${escapeHtml(page.h1)}</h1>
       <p class="lede">${escapeHtml(page.lede)}</p>
-      <p class="price-pill">${he ? "עלות מעסיק מחושבת" : "Computed employer cost"} <strong>${ils(result.totalEmployerCostIls)}</strong> / ${he ? "חודש" : "month"}</p>
+      <p class="kicker">${he ? "עלות מעסיק מחושבת" : "Computed employer cost"} · <strong>${ils(result.totalEmployerCostIls)}</strong></p>
       <p>${he ? "ברוטו" : "Gross"} ${ils(page.grossIls)} · ${he ? "תפקיד" : "role"} ${escapeHtml(page.role)} · ${he ? "עלות נלווית" : "on-cost"} ${ils(result.oncostIls)} · ${he ? "העמסה" : "load"} ${(result.loadRatio * 100).toFixed(1)}% · ${he ? "שיעורים נכון ל" : "rates as of"} ${escapeHtml(rates.asOf)}</p>
       ${sections}
       <p><a class="buy" href="${calcHref}#buy">${he ? "פתחו את המחשבון עם השכר הזה" : "Open the calculator with this salary"}</a></p>
