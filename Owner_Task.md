@@ -37,13 +37,19 @@ Do **not** use `http://`, `www.cost.vinesautomation.com`, or the parked root `vi
 ### B. Paddle dashboard (live account, not Sandbox)
 
 1. Open [Website approval](https://vendors.paddle.com/request-domain-approval) (**Checkout → Website approval**).
-2. Click **Add a new domain**.
-3. Enter **`cost.vinesautomation.com`** (no `https://`, no path).
-4. Submit. Automatic approval is common; if it goes to manual review it can take several business days.
+2. Click **Add a new domain** (or resubmit if they already rejected the root).
+3. Enter **exactly** `cost.vinesautomation.com` — not `vinesautomation.com`, no `https://`, no path.
+4. Submit and wait until status is **Approved**. Manual review can take several business days.
 5. Open **Checkout → Checkout settings → Default payment link**.
 6. Set it to **`https://cost.vinesautomation.com`** and save.
 
-Paddle reviews the live site for: product description, price, what you get, and links to **Terms**, **Privacy**, and **Refunds**. Those three pages are now in the site footer.
+Paddle reviews the live site for: product description, price, what you get, and **visible links** to Terms of Service, Privacy Notice, and Refund Policy. Those three are now in the **header and footer** of https://cost.vinesautomation.com/ :
+
+- https://cost.vinesautomation.com/terms.html
+- https://cost.vinesautomation.com/privacy.html
+- https://cost.vinesautomation.com/refund.html
+
+Then **resubmit** `cost.vinesautomation.com` (the subdomain, not the root). Paddle does not inherit approval from `vinesautomation.com`.
 
 ### C. Retry Pay
 

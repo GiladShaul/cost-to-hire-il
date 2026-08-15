@@ -86,9 +86,24 @@ a:hover { color: #0b3a34; }
   color: #33473f;
 }
 
-.nav-links a {
+.nav-links a,
+.legal-nav a {
   color: inherit;
   text-decoration: none;
+}
+
+.legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.legal-nav a {
+  color: var(--teal-mid);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .lang {
@@ -497,6 +512,7 @@ html[dir="ltr"] .brand-tag {
   }
   .site-header { padding-top: 14px; padding-bottom: 14px; }
   .nav-links { display: none; }
+  .legal-nav { display: flex; }
   .calc-grid, .offer-band, .lower, .metrics, .field-grid {
     grid-template-columns: 1fr;
   }

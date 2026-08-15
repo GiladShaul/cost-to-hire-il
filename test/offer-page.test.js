@@ -29,6 +29,9 @@ describe("sellable offer surface", function () {
     assert.match(html, /href="terms.html"/);
     assert.match(html, /href="privacy.html"/);
     assert.match(html, /href="refund.html"/);
+    assert.match(html, /Terms of Service/);
+    assert.match(html, /Privacy Notice/);
+    assert.match(html, /Refund Policy/);
     assert.doesNotMatch(html, /password|secret|api[_-]?key/i);
     assert.equal(offer.priceIls, 149);
     assert.equal(offer.delivery, "instant-html-briefing");
