@@ -14,15 +14,15 @@ Do not put passwords, government identifiers, identity documents, payment detail
 
 ## Current owner action
 
-Do **Step 1** this afternoon. Do **Step 2** this week. Acquisition pages and community drafts are already built; they do not wait on you.
+Paddle has **approved** `cost.vinesautomation.com`. Next: confirm the Pay overlay opens, then **Step 2** (tax files). After that you can send the community drafts.
 
 ---
 
 ## Step 1 — Unblock live Paddle checkout (and use HTTPS)
 
-- **Status:** Open
-- **Needed by:** Before a stranger can pay. This is why Pay currently says “Something went wrong.”
-- **Why you:** only the Paddle account owner can approve the subdomain and set the default payment link.
+- **Status:** Complete (domain approved 2026-08-15). Remaining: one Pay click to confirm the overlay, and a price check.
+- **Needed by:** Before sending traffic.
+- **Why you:** only you can complete a live checkout test in the Paddle overlay.
 
 Paddle will **not** open a live overlay on a subdomain until that exact host is approved. Approving `vinesautomation.com` is not enough. You must approve **`cost.vinesautomation.com`**.
 
@@ -64,7 +64,7 @@ Hard-refresh https://cost.vinesautomation.com/ and click **Pay and download the 
 
 ### Blocking effect
 
-Blocks live card checkout. Does not block the free calculator or preview briefing.
+Domain approval is done. Overlay confirmation still sits with you. Does not block the free calculator.
 
 ---
 
