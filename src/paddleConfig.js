@@ -12,8 +12,8 @@
     environment: "live",
     token: "live_579a806bcb2f8651264fe92a665",
     productId: "pro_01kzzgrxyxwynpc6xchx8c3nb9",
-    regularPriceId: "pri_01kzzgz4k6v40cseed86rhs3pr",
-    salePriceId: "pri_01kzzgz4k6v40cseed86rhs3pr",
+    regularPriceId: "pri_01m3vpxpbnqzf00tm9gh91q6r3",
+    salePriceId: "pri_01m3vpxpbnqzf00tm9gh91q6r3",
     chargeCurrency: "ILS",
     defaultPaymentLink: "https://cost.vinesautomation.com/",
   };
