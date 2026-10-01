@@ -80,7 +80,7 @@ describe("sellable offer surface", function () {
     assert.equal(status.state, "ready");
     const html = read("index.html");
     assert.match(html, new RegExp(status.labelEn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-    assert.match(html, /Launch price ₪49 until 17 Sep 2026/);
+    assert.match(html, /Price ₪149/);
     assert.match(html, /merchant of record/);
   });
 
@@ -93,7 +93,5 @@ describe("sellable offer surface", function () {
     assert.match(read("refund.html"), /14 days/);
     assert.match(read("terms.html"), /merchant of record/);
     assert.match(read("terms.html"), /₪149/);
-    assert.match(read("terms.html"), /₪49/);
-    assert.match(read("terms.html"), /17 September 2026/);
   });
 });
