@@ -59,7 +59,9 @@ describe("cli entry point", function () {
     const result = runCli(["offer"]);
     assert.equal(result.status, 0, result.stderr);
     const body = JSON.parse(result.stdout);
-    assert.equal(body.priceLabel, "₪149");
+    assert.equal(body.regularPriceIls, 149);
+    assert.equal(body.salePriceIls, 49);
+    assert.match(body.priceLabel, /^₪(49|149)$/);
     assert.equal(body.delivery, "instant-html-briefing");
     assert.ok(body.items.length >= 3);
   });

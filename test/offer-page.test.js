@@ -18,6 +18,10 @@ describe("sellable offer surface", function () {
     const offer = Offer.getOffer();
     assert.match(html, /CostToHire IL/);
     assert.match(html, /₪149/);
+    assert.match(html, /₪49/);
+    assert.match(html, /id="sale-countdown"/);
+    assert.match(html, /id="list-price"/);
+    assert.match(html, /Launch price until 17 Sep 2026/);
     assert.match(html, /Israel employer-cost briefing/);
     assert.match(html, /id="gross"/);
     assert.match(html, /id="total-stamp"/);
@@ -33,7 +37,8 @@ describe("sellable offer surface", function () {
     assert.match(html, /Privacy Notice/);
     assert.match(html, /Refund Policy/);
     assert.doesNotMatch(html, /password|secret|api[_-]?key/i);
-    assert.equal(offer.priceIls, 149);
+    assert.equal(offer.regularPriceIls, 149);
+    assert.equal(offer.salePriceIls, 49);
     assert.equal(offer.delivery, "instant-html-briefing");
   });
 
@@ -75,7 +80,8 @@ describe("sellable offer surface", function () {
     assert.equal(status.state, "ready");
     const html = read("index.html");
     assert.match(html, new RegExp(status.labelEn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-    assert.match(html, /charged in USD/);
+    assert.match(html, /Launch price ₪49 until 17 Sep 2026/);
+    assert.match(html, /merchant of record/);
   });
 
   it("publishes terms, privacy, and refund pages for Paddle domain review", function () {
@@ -86,5 +92,8 @@ describe("sellable offer surface", function () {
     });
     assert.match(read("refund.html"), /14 days/);
     assert.match(read("terms.html"), /merchant of record/);
+    assert.match(read("terms.html"), /₪149/);
+    assert.match(read("terms.html"), /₪49/);
+    assert.match(read("terms.html"), /17 September 2026/);
   });
 });

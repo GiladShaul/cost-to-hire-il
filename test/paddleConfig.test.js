@@ -11,12 +11,28 @@ describe("Paddle checkout config", function () {
     assert.equal(cfg.provider, "paddle");
     assert.equal(cfg.environment, "live");
     assert.match(cfg.token, /^live_/);
-    assert.match(cfg.priceId, /^pri_/);
-    assert.equal(cfg.chargeCurrency, "USD");
+    assert.match(cfg.regularPriceId, /^pri_/);
+    assert.match(cfg.salePriceId, /^pri_/);
+    assert.equal(cfg.chargeCurrency, "ILS");
     assert.equal(PaddleConfig.isReady(cfg), true);
-    assert.deepEqual(PaddleConfig.checkoutItems(cfg), [
-      { priceId: cfg.priceId, quantity: 1 },
-    ]);
+    assert.deepEqual(
+      PaddleConfig.checkoutItems({
+        token: cfg.token,
+        regularPriceId: cfg.regularPriceId,
+        salePriceId: "pri_sale_test_id",
+        onSale: true,
+      }),
+      [{ priceId: "pri_sale_test_id", quantity: 1 }]
+    );
+    assert.deepEqual(
+      PaddleConfig.checkoutItems({
+        token: cfg.token,
+        regularPriceId: "pri_regular_test_id",
+        salePriceId: cfg.salePriceId,
+        onSale: false,
+      }),
+      [{ priceId: "pri_regular_test_id", quantity: 1 }]
+    );
   });
 
   it("marks the sellable offer ready when that config is present", function () {
@@ -27,7 +43,7 @@ describe("Paddle checkout config", function () {
 
   it("refuses to open checkout without a price ID", function () {
     assert.throws(function () {
-      PaddleConfig.checkoutItems({ token: "live_x", priceId: "pro_not_a_price" });
+      PaddleConfig.checkoutItems({ token: "live_x", regularPriceId: "pro_not_a_price", onSale: false });
     }, /not configured/);
   });
 });

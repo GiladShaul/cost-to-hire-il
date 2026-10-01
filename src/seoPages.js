@@ -5,7 +5,7 @@ const PAGES = [
     slug: "hire-in-israel-2026",
     lang: "en",
     title: "Cost to hire an employee in Israel (2026) — free calculator",
-    description: "See the 2026 employer load on an Israeli salary: Bituach Leumi, pension, and severance. Free calculator, dated briefing from ₪149.",
+    description: "See the 2026 employer load on an Israeli salary: Bituach Leumi, pension, and severance. Free calculator, dated briefing ₪149.",
     h1: "What does it cost to hire an employee in Israel in 2026?",
     grossIls: 18000,
     role: "First Israeli hire",

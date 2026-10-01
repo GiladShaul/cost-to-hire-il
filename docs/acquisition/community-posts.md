@@ -16,7 +16,7 @@ I put a free bilingual calculator at https://cost.vinesautomation.com/hire-in-is
 
 It uses the published 2026 Bituach Leumi bands (₪7,703 / ₪51,910), 6.5% employer pension, and a toggle for 6% vs 8.33% Section 14. Informational only — not tax or legal advice.
 
-There is a ₪149 dated briefing if you need something to send finance. The calculator itself is free.
+There is a dated briefing if you need something to send finance (₪149). The calculator itself is free.
 
 ---
 

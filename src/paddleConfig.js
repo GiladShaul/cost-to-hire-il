@@ -12,8 +12,9 @@
     environment: "live",
     token: "live_579a806bcb2f8651264fe92a665",
     productId: "pro_01kzzgrxyxwynpc6xchx8c3nb9",
-    priceId: "pri_01kzzgz4k6v40cseed86rhs3pr",
-    chargeCurrency: "USD",
+    regularPriceId: "pri_01kzzgz4k6v40cseed86rhs3pr",
+    salePriceId: "pri_01kzzgz4k6v40cseed86rhs3pr",
+    chargeCurrency: "ILS",
     defaultPaymentLink: "https://cost.vinesautomation.com/",
   };
 
@@ -23,10 +24,27 @@
       environment: CONFIG.environment,
       token: CONFIG.token,
       productId: CONFIG.productId,
-      priceId: CONFIG.priceId,
+      regularPriceId: CONFIG.regularPriceId,
+      salePriceId: CONFIG.salePriceId,
+      priceId: CONFIG.regularPriceId,
       chargeCurrency: CONFIG.chargeCurrency,
       defaultPaymentLink: CONFIG.defaultPaymentLink,
     };
+  }
+
+  function isPriceId(value) {
+    return typeof value === "string" && /^pri_/.test(value);
+  }
+
+  function resolveOnSale(cfg) {
+    if (cfg && typeof cfg.onSale === "boolean") return cfg.onSale;
+    if (typeof Offer !== "undefined" && Offer.isOnSale) return Offer.isOnSale();
+    return false;
+  }
+
+  function activePriceId(config) {
+    const cfg = config || getConfig();
+    return resolveOnSale(cfg) ? cfg.salePriceId : cfg.regularPriceId;
   }
 
   function isReady(config) {
@@ -34,17 +52,18 @@
     return (
       typeof cfg.token === "string" &&
       /^(live|test)_/.test(cfg.token) &&
-      typeof cfg.priceId === "string" &&
-      /^pri_/.test(cfg.priceId)
+      isPriceId(cfg.regularPriceId || cfg.priceId) &&
+      isPriceId(cfg.salePriceId || cfg.regularPriceId || cfg.priceId)
     );
   }
 
   function checkoutItems(config) {
     const cfg = config || getConfig();
-    if (!isReady(cfg)) {
+    const priceId = activePriceId(cfg);
+    if (!isReady(cfg) || !isPriceId(priceId)) {
       throw new Error("Paddle checkout is not configured");
     }
-    return [{ priceId: cfg.priceId, quantity: 1 }];
+    return [{ priceId: priceId, quantity: 1 }];
   }
 
   return {

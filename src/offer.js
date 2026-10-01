@@ -12,7 +12,9 @@
     sku: "il-employer-cost-briefing-v1",
     nameEn: "Israel employer-cost briefing",
     nameHe: "תדריך עלות מעסיק בישראל",
-    priceIls: 149,
+    regularPriceIls: 149,
+    salePriceIls: 49,
+    saleEndsAt: "2026-09-17T23:59:59+03:00",
     currency: "ILS",
     billing: "one_time",
     delivery: "instant-html-briefing",
@@ -34,13 +36,54 @@
     ],
   };
 
-  function getOffer() {
+  function at(now) {
+    if (now === undefined || now === null) return Date.now();
+    const t = new Date(now).getTime();
+    if (!Number.isFinite(t)) {
+      throw new Error("now must be a valid date");
+    }
+    return t;
+  }
+
+  function saleEndMs() {
+    return Date.parse(OFFER.saleEndsAt);
+  }
+
+  function isOnSale(now) {
+    return at(now) < saleEndMs();
+  }
+
+  function currentPriceIls(now) {
+    return isOnSale(now) ? OFFER.salePriceIls : OFFER.regularPriceIls;
+  }
+
+  function remainingMs(now) {
+    return Math.max(0, saleEndMs() - at(now));
+  }
+
+  function formatCountdown(now) {
+    const totalSec = Math.floor(remainingMs(now) / 1000);
+    const days = Math.floor(totalSec / 86400);
+    const hours = Math.floor((totalSec % 86400) / 3600);
+    const minutes = Math.floor((totalSec % 3600) / 60);
+    const seconds = totalSec % 60;
+    function pad(n) {
+      return String(n).padStart(2, "0");
+    }
+    return days + "d " + pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+  }
+
+  function getOffer(now) {
     return {
       brand: OFFER.brand,
       sku: OFFER.sku,
       nameEn: OFFER.nameEn,
       nameHe: OFFER.nameHe,
-      priceIls: OFFER.priceIls,
+      regularPriceIls: OFFER.regularPriceIls,
+      salePriceIls: OFFER.salePriceIls,
+      saleEndsAt: OFFER.saleEndsAt,
+      onSale: isOnSale(now),
+      priceIls: currentPriceIls(now),
       currency: OFFER.currency,
       billing: OFFER.billing,
       delivery: OFFER.delivery,
@@ -65,14 +108,18 @@
     return cur + " " + n.toFixed(2);
   }
 
-  function describeOffer(locale) {
-    const offer = getOffer();
+  function describeOffer(locale, now) {
+    const offer = getOffer(now);
     const he = locale === "he";
     return {
       headline: he
         ? offer.nameHe + " — " + formatPrice(offer.priceIls, offer.currency)
         : offer.nameEn + " — " + formatPrice(offer.priceIls, offer.currency),
       priceLabel: formatPrice(offer.priceIls, offer.currency),
+      regularPriceIls: offer.regularPriceIls,
+      salePriceIls: offer.salePriceIls,
+      saleEndsAt: offer.saleEndsAt,
+      onSale: offer.onSale,
       delivery: offer.delivery,
       items: he ? offer.whatYouBuyHe.slice() : offer.whatYouBuyEn.slice(),
     };
@@ -98,5 +145,8 @@
     formatPrice: formatPrice,
     describeOffer: describeOffer,
     checkoutStatus: checkoutStatus,
+    isOnSale: isOnSale,
+    currentPriceIls: currentPriceIls,
+    formatCountdown: formatCountdown,
   };
 });

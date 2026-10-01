@@ -65,7 +65,7 @@
   function copy(locale) {
     if (locale === "he") {
       return {
-        sample: "פורמט לדוגמה — התשלום החי יפתח אחרי אימות חשבון הסליקה. הסכומים מגיעים מאותו מנוע כמו התדריך בתשלום.",
+        sample: "פורמט לדוגמה — זו תצוגה מקדימה. רכישה מורידה את התדריך בלי סימן טיוטה. הסכומים מגיעים מאותו מנוע כמו התדריך בתשלום.",
         ratesLine: function (version, asOf, generatedAt) {
           return "גרסת שיעורים " + version + " נכון ל־" + asOf + ". נוצר ב־" + generatedAt + ".";
         },
@@ -98,7 +98,7 @@
       };
     }
     return {
-      sample: "SAMPLE FORMAT — live checkout is waiting on seller payment-account verification. Figures use the same shipped engine as a paid briefing.",
+      sample: "SAMPLE FORMAT — this is a preview. Pay to download the unwatermarked briefing. Figures use the same shipped engine as a paid briefing.",
       ratesLine: function (version, asOf, generatedAt) {
         return "Rates version " + version + " as of " + asOf + ". Generated " + generatedAt + ".";
       },
@@ -168,7 +168,7 @@
   function generateBriefing(input, rates, options) {
     const opts = options || {};
     const result = EmployerCost.computeEmployerCost(input, rates);
-    const offer = Offer.getOffer();
+    const offer = Offer.getOffer(options && options.now);
     const locale = result.input.locale;
     const compare = EmployerCost.firstYearVersusSteady(input, rates);
     const months = EmployerCost.twelveMonthCash(result);

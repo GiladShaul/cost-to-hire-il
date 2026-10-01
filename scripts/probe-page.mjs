@@ -53,6 +53,26 @@ try {
   if (!before || before === "—") {
     throw new Error("calculator did not print an initial total");
   }
+  const sale = await page.evaluate(function () {
+    return {
+      list: (document.getElementById("list-price") || {}).textContent || "",
+      price: (document.getElementById("sale-price") || {}).textContent || "",
+      countdown: ((document.getElementById("sale-countdown") || {}).textContent || "").trim(),
+      lineHidden: !!(document.getElementById("sale-line") || {}).hidden,
+    };
+  });
+  if (sale.list.indexOf("149") === -1) {
+    throw new Error("list price missing ₪149: " + sale.list);
+  }
+  if (sale.price.indexOf("49") === -1 || sale.price.indexOf("149") !== -1) {
+    throw new Error("sale price should be ₪49: " + sale.price);
+  }
+  if (sale.lineHidden) {
+    throw new Error("sale line hidden during launch window");
+  }
+  if (!/^\d+d \d{2}:\d{2}:\d{2}$/.test(sale.countdown)) {
+    throw new Error("countdown not ticking: " + sale.countdown);
+  }
   await page.fill("#gross", "10000");
   await page.waitForFunction(function () {
     return document.getElementById("total-stamp").textContent.indexOf("12004.98") !== -1;

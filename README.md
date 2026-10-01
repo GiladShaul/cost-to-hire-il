@@ -12,7 +12,7 @@ Guides: [hire in Israel 2026](https://cost.vinesautomation.com/hire-in-israel-20
 
 Embed: `<script src="https://cost.vinesautomation.com/embed.js" data-gross="18000"></script>`
 
-Open that URL or local `index.html`. Enter a monthly gross salary. The stub prints the employer cost. “Preview the briefing format” downloads the delivery HTML. Live card checkout waits on the owner KYC tasks in `Owner_Task.md`.
+Open that URL or local `index.html`. Enter a monthly gross salary. The stub prints the employer cost. “Preview the briefing format” downloads the delivery HTML. “Pay and download the briefing” opens live Paddle checkout in ILS.
 
 ## Agent / CLI
 
@@ -25,4 +25,4 @@ npm test
 
 ## Capital and owner work
 
-See `DESIGN.md` and `Owner_Task.md`. Live card checkout waits on owner KYC. The public calculator does not.
+See `DESIGN.md` and `Owner_Task.md`. Card checkout is live. Tax-file work in `Owner_Task.md` Step 2 still sits with the owner.

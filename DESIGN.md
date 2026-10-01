@@ -2,7 +2,7 @@
 
 Standalone online information product, operated from Israel.
 
-**Offer:** A free bilingual calculator of the fully loaded employer cost of hiring an employee in Israel, plus a dated, source-cited briefing (HTML, printable to PDF) sold for **ILS 149**.
+**Offer:** A free bilingual calculator of the fully loaded employer cost of hiring an employee in Israel, plus a dated, source-cited briefing (HTML, printable to PDF) sold for **ILS 149**. Launch price **ILS 49** until 17 Sep 2026.
 
 Claude was consulted on 2026-08-13 (`claude -p`). It compared four candidates and selected this model. The consult note is in `docs/claude-consult.md`.
 
@@ -66,7 +66,7 @@ Prices (VAT not charged while Osek Patur):
 | SKU | Price | Delivery |
 |---|---:|---|
 | Free calculator | 0 | Instant, client-side |
-| Briefing v1 | **149** | Instant HTML briefing |
+| Briefing v1 | **149** (launch **49** until 17 Sep 2026) | Instant HTML briefing |
 | Pro (from month 3) | 99 / month | Unlimited saved scenarios |
 | Agency | 390 / month | Client-branded exports |
 | Firm / API | 1,500 / month | After Osek Murshe / company |
@@ -82,9 +82,9 @@ Prices (VAT not charged while Osek Patur):
 | Hosting / domain / email | | | −80 |
 | **Net** | | | **5,398** |
 
-That is 46 paying actions. At a 3% free-calculator → paid conversion the site needs about 1,550 calculator runs that month. English high-intent pages (“cost to hire an employee in Israel 2026”, “employer cost Israel software engineer”) plus Hebrew “עלות מעסיק 2026” are the acquisition path. No paid ads inside the ILS 1,000 cap.
+That is 46 paying actions after the launch window. At a 3% free-calculator → paid conversion the site needs about 1,550 calculator runs that month. During the ₪49 launch (until 17 Sep 2026) the same net needs about 122 briefings. English high-intent pages (“cost to hire an employee in Israel 2026”, “employer cost Israel software engineer”) plus Hebrew “עלות מעסיק 2026” are the acquisition path. No paid ads inside the ILS 1,000 cap.
 
-**Conservative alternate (no subscriptions yet):** 40 briefings × 149 = 5,960 − 477 fees − 80 infra = **5,403 net**.
+**Conservative alternate (no subscriptions yet):** 40 briefings × 149 = 5,960 − 477 fees − 80 infra = **5,403 net**. During launch: 122 × 49 = 5,978 − 478 fees − 80 infra = **5,420 net**.
 
 Year-one run-rate at ILS 5,400 / month is ILS 64,800, under the Osek Patur ceiling.
 

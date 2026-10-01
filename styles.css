@@ -403,6 +403,7 @@ input:focus, select:focus {
   display: flex;
   align-items: baseline;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .price-row strong {
@@ -411,6 +412,30 @@ input:focus, select:focus {
 }
 
 .price-row span { font-size: 13px; color: #b9ccc2; }
+
+.price-row .list-price {
+  font: 500 18px "Fira Mono", ui-monospace, monospace;
+  color: #8aa198;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.sale-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #b9ccc2;
+}
+
+.sale-countdown {
+  font: 500 13px "Fira Mono", ui-monospace, monospace;
+  color: #e9efe7;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
 
 .actions {
   display: flex;

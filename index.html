@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title data-en="CostToHire IL — Israel employer-cost briefing" data-he="CostToHire IL — תדריך עלות מעסיק בישראל">CostToHire IL — תדריך עלות מעסיק בישראל</title>
-  <meta name="description" data-en="See the true shekel cost of hiring an employee in Israel. Free 2026 calculator. Dated briefing ₪149." data-he="העלות השקלית האמיתית של העסקת עובד בישראל. מחשבון חינם ל־2026. תדריך מתוארך ב־₪149." content="העלות השקלית האמיתית של העסקת עובד בישראל. מחשבון חינם ל־2026. תדריך מתוארך ב־₪149.">
+  <meta name="description" data-en="See the true shekel cost of hiring an employee in Israel. Free 2026 calculator. Dated briefing ₪149." data-he="העלות השקלית האמיתית של העסקת עובד בישראל. מחשבון חינם ל־2026. תדריך מתוארך ב־₪149; מחיר השקה ₪49 עד 17 בספטמבר 2026." content="העלות השקלית האמיתית של העסקת עובד בישראל. מחשבון חינם ל־2026. תדריך מתוארך ב־₪149; מחיר השקה ₪49 עד 17 בספטמבר 2026.">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,14 +129,19 @@
       </div>
       <div class="offer-buy">
         <div class="price-row">
-          <strong>₪149</strong>
+          <span id="list-price" class="list-price" hidden>₪149</span>
+          <strong id="sale-price">₪149</strong>
           <span data-en="Israel employer-cost briefing · one-time · instant download" data-he="תשלום חד־פעמי · הורדה מיידית">תשלום חד־פעמי · הורדה מיידית</span>
         </div>
+        <p id="sale-line" class="sale-line" hidden>
+          <span data-en="Launch price until 17 Sep 2026" data-he="מחיר השקה עד 17 בספטמבר 2026">מחיר השקה עד 17 בספטמבר 2026</span>
+          <span id="sale-countdown" class="sale-countdown" aria-hidden="true"></span>
+        </p>
         <div class="actions">
           <a class="buy" id="buy" href="#buy" data-en="Pay and download the briefing" data-he="רכישה והורדת התדריך">רכישה והורדת התדריך</a>
           <button type="button" id="download-briefing" class="secondary" data-en="Preview the briefing format" data-he="תצוגה מקדימה של הפורמט">תצוגה מקדימה של הפורמט</button>
         </div>
-        <p id="owner-checkout" data-en="Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically." data-he="הסליקה באמצעות Paddle, סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום התדריך יורד אוטומטית.">הסליקה באמצעות Paddle, סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום התדריך יורד אוטומטית.</p>
+        <p id="owner-checkout" data-en="Card checkout is handled by Paddle, the merchant of record. Price ₪149. After payment the unwatermarked briefing downloads automatically." data-he="הסליקה באמצעות Paddle, סוחר הרשומה. מחיר ₪149. אחרי התשלום התדריך יורד אוטומטית.">הסליקה באמצעות Paddle, סוחר הרשומה. מחיר ₪149. אחרי התשלום התדריך יורד אוטומטית.</p>
         <p id="paddle-status" class="error" hidden></p>
         <p class="buy-note" data-en="Later: Pro ₪99/month · Agency ₪390/month · Firm/API ₪1,500/month." data-he="בהמשך: Pro ‏₪99/חודש · סוכנות ‏₪390/חודש · משרד / API ‏₪1,500/חודש">בהמשך: Pro ‏₪99/חודש · סוכנות ‏₪390/חודש · משרד / API ‏₪1,500/חודש</p>
       </div>

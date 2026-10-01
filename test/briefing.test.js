@@ -16,11 +16,12 @@ describe("generateBriefing", function () {
     const expected = EmployerCost.computeEmployerCost(input, rates);
     const pack = Briefing.generateBriefing(input, rates, {
       generatedAt: "2026-08-13T00:00:00.000Z",
+      now: "2026-09-10T12:00:00+03:00",
       sample: false,
     });
     const offer = Offer.getOffer();
     assert.equal(pack.json.sku, offer.sku);
-    assert.equal(pack.json.priceIls, 149);
+    assert.equal(pack.json.priceIls, 49);
     assert.equal(pack.json.result.totalEmployerCostIls, expected.totalEmployerCostIls);
     assert.match(pack.html, /Israel employer-cost briefing/);
     assert.match(pack.html, new RegExp(String(expected.totalEmployerCostIls).replace(".", "\\.")));

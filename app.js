@@ -138,6 +138,58 @@
     note.textContent = document.documentElement.lang === "he" ? he : en;
   }
 
+  function chargeCopy(onSale) {
+    if (onSale) {
+      return {
+        en: "Card checkout is handled by Paddle, the merchant of record. Price ₪149. After payment the unwatermarked briefing downloads automatically.",
+        he: "הסליקה באמצעות Paddle, סוחר הרשומה. מחיר ₪149. אחרי התשלום התדריך יורד אוטומטית.",
+      };
+    }
+    return {
+      en: "Card checkout is handled by Paddle, the merchant of record. You are charged in Israeli shekels (₪149). After payment the unwatermarked briefing downloads automatically.",
+      he: "הסליקה באמצעות Paddle, סוחר הרשומה. החיוב בשקלים חדשים (₪149). אחרי התשלום התדריך יורד אוטומטית.",
+    };
+  }
+
+  let paddleNoteLocked = false;
+
+  function renderOfferPrice() {
+    if (typeof Offer === "undefined") return;
+    const onSale = Offer.isOnSale();
+    const current = Offer.formatPrice(Offer.currentPriceIls(), "ILS");
+    const regular = Offer.formatPrice(Offer.getOffer().regularPriceIls, "ILS");
+    if ($("sale-price")) $("sale-price").textContent = current;
+    if ($("list-price")) {
+      $("list-price").hidden = !onSale;
+      $("list-price").textContent = regular;
+    }
+    if ($("sale-line")) $("sale-line").hidden = !onSale;
+    if ($("sale-countdown")) {
+      $("sale-countdown").textContent = onSale ? Offer.formatCountdown() : "";
+    }
+    if (!paddleNoteLocked) {
+      const copy = chargeCopy(onSale);
+      setCheckoutNote(copy.en, copy.he);
+    }
+  }
+
+  let saleTimer = null;
+  function startSaleClock() {
+    renderOfferPrice();
+    if (saleTimer) {
+      clearInterval(saleTimer);
+      saleTimer = null;
+    }
+    if (typeof Offer === "undefined" || !Offer.isOnSale()) return;
+    saleTimer = setInterval(function () {
+      renderOfferPrice();
+      if (!Offer.isOnSale() && saleTimer) {
+        clearInterval(saleTimer);
+        saleTimer = null;
+      }
+    }, 1000);
+  }
+
   function openPaddleCheckout() {
     if (typeof Paddle === "undefined" || !PaddleConfig.isReady()) {
       setCheckoutNote(
@@ -147,8 +199,10 @@
       return;
     }
     if (!calculate()) return;
+    const cfg = PaddleConfig.getConfig();
+    cfg.onSale = typeof Offer !== "undefined" && Offer.isOnSale();
     Paddle.Checkout.open({
-      items: PaddleConfig.checkoutItems(),
+      items: PaddleConfig.checkoutItems(cfg),
     });
   }
 
@@ -180,11 +234,9 @@
     buy.setAttribute("data-he", ready.labelHe);
     buy.textContent = document.documentElement.lang === "he" ? ready.labelHe : ready.labelEn;
     buy.setAttribute("href", "#buy");
-    setCheckoutNote(
-      "Card checkout is handled by Paddle, the merchant of record. You will be charged in USD at the catalog price. After payment the unwatermarked briefing downloads automatically.",
-      "התשלום בכרטיס עובר דרך Paddle, שהיא סוחר הרשומה. החיוב בדולר לפי מחיר הקטלוג. אחרי התשלום יורד התדריך בלי סימן טיוטה."
-    );
+    renderOfferPrice();
     if (typeof Paddle === "undefined") {
+      paddleNoteLocked = true;
       setCheckoutNote(
         "Paddle.js did not load. Checkout cannot open on this page load.",
         "Paddle לא נטען. לא ניתן לפתוח תשלום בטעינה זו."
@@ -247,6 +299,7 @@
     syncDefaultField($("role"), he);
     $("lang-en").setAttribute("aria-pressed", he ? "false" : "true");
     $("lang-he").setAttribute("aria-pressed", he ? "true" : "false");
+    renderOfferPrice();
     calculate();
   }
 
@@ -277,6 +330,7 @@
       markPaid();
     }
     initPaddle();
+    startSaleClock();
     if (params.get("lang") === "en") {
       setLang("en");
     } else {

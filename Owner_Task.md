@@ -14,15 +14,16 @@ Do not put passwords, government identifiers, identity documents, payment detail
 
 ## Current owner action
 
-Paddle has **approved** `cost.vinesautomation.com`. Next: confirm the Pay overlay opens, then **Step 2** (tax files). After that you can send the community drafts.
+Launch sale is **₪49 until 17 Sep 2026 23:59 Israel time**, then **₪149**. In Paddle create **two** prices on the same product (₪49 and ₪149) and reply with both `pri_` IDs. Until then both checkout paths use the existing price ID, so the overlay amount may not match the page. Then paste community drafts. Next product-legal item: **Step 4**.
 
 ---
 
 ## Step 1 — Unblock live Paddle checkout (and use HTTPS)
 
-- **Status:** Complete (domain approved 2026-08-15). Remaining: one Pay click to confirm the overlay, and a price check.
+- **Status:** Complete (domain approved 2026-08-15; overlay opened 2026-09-03).
 - **Needed by:** Before sending traffic.
 - **Why you:** only you can complete a live checkout test in the Paddle overlay.
+- **Recorded result:** `overlay: opened` · `website approval: approved` · `paddle price: ILS`. Public list is **₪149** with launch **₪49** until 2026-09-17. Owner must attach two Paddle prices.
 
 Paddle will **not** open a live overlay on a subdomain until that exact host is approved. Approving `vinesautomation.com` is not enough. You must approve **`cost.vinesautomation.com`**.
 
@@ -60,24 +61,25 @@ Hard-refresh https://cost.vinesautomation.com/ and click **Pay and download the 
 
 ### D. Price check
 
-**Catalog → Products → Prices.** If the amount is **$149**, change it to about **$40** so it matches a ₪149 product. Reply with `paddle price: $__` only.
+Owner confirmed the overlay charges in **Israeli New Shekel**. Site now shows list **₪149** and launch **₪49** until 17 Sep 2026. In **Catalog → Products → Prices** keep/create both amounts and send the two `pri_` IDs.
 
 ### Blocking effect
 
-Domain approval is done. Overlay confirmation still sits with you. Does not block the free calculator.
+None. Checkout is live. Does not block the free calculator.
 
 ---
 
 ## Step 2 — Open the Israeli tax files
 
-- **Status:** Open
+- **Status:** Complete (owner stated classification **Patur** on 2026-09-03).
 - **Needed by:** Before treating the first Paddle payout as spendable income.
 - **Why you:** only the living owner can open VAT and income-tax files. This file is not tax advice.
+- **Recorded result:** `classification: Patur` · `VAT on public price: no` (Patur does not charge VAT). Effective date and allowed receipt type were not stated.
 
 ### Do this
 
 1. Book a short session with an Israeli accountant (the ₪400 reserve in `DESIGN.md` is for this).
-2. Show them: this is an information product sold through **Paddle** (merchant of record), priced in **USD**, site at `cost.vinesautomation.com`.
+2. Show them: this is an information product sold through **Paddle** (merchant of record), priced in **ILS (₪149, launch ₪49 until 17 Sep 2026)**, site at `cost.vinesautomation.com`.
 3. Ask them to confirm whether the activity can start as **Osek Patur** (turnover under the current ~₪120,000–122,833 ceiling) or must be **Osek Murshe**.
 4. Open the files they specify:
    - VAT (Ma’am) — Patur or Murshe
@@ -110,8 +112,8 @@ Does not block building, SEO, or Paddle taking a card. Blocks treating received 
 
 ### 4. Legal seller details for the public terms
 
-- **Status:** Waiting
-- **Trigger:** Step 2 produces a classification.
+- **Status:** Open
+- **Trigger:** Step 2 produced classification **Patur**.
 - **Owner action:** Provide the public-facing seller name, business identifier, service address, and a business contact route through a channel that is appropriate for identity information. Do not commit those identifiers to git.
 - **Return to the agent:** The exact wording that may appear on the terms page.
 - **Blocking effect:** Blocks the production seller block on the terms page. Does not block the calculator or checkout overlay.
